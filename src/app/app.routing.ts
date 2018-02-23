@@ -46,7 +46,16 @@ export const routes: Routes = [
       {
         path: 'reception',
         loadChildren: './modules/reception/reception-list/reception-list.module#ReceptionListModule'
+      },
+      {
+        path: 'category',
+        loadChildren: './modules/category/category-component.module#CategoryModule'
+      },
+      {
+        path: 'schedule',
+        loadChildren: './modules/schedule/schedule.module#ScheduleModule'
       }
+      
     ]
   },
   {

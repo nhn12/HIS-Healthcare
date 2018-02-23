@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: ReceptionListComponent,
     data: {
-      title: 'Reception'
+      title: 'Tiếp nhận'
     }
   }
 ];

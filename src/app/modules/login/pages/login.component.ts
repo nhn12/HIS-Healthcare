@@ -21,8 +21,11 @@ export class LoginComponent {
     tempUser.username = this.username;
     tempUser.password = this.password;
     this.loginService.login(tempUser).subscribe(result=>{
-      this.isLoading = false;
-      this.router.navigate(['/dashboard'], { replaceUrl: true });
+      setTimeout(()=>{
+        this.isLoading = false;
+
+        this.router.navigate(['/dashboard'], { replaceUrl: true });
+      }, 3000)
     }, error=>{
       this.isLoading = false;
     })

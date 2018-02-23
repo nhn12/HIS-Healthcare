@@ -1,1 +1,108 @@
 // Here you can add other styles
+
+.ng-pristine.ng-invalid {
+    border-color: none;
+}
+
+.ng-invalid:not(.ng-pristine) {
+    border-color: #f86c6b;
+}
+
+.ng-invalid:not(.ng-pristine):focus {
+    box-shadow: 0 0 0 0.2rem rgba(248, 108, 107, 0.25);
+}
+
+
+// custome toast
+.toast-container .toast {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: none;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: none;
+    color: #FFFFFF;
+}
+
+// modal
+.modal-backdrop {
+    transition-duration: 0.2s;
+    background: rgba(120, 124, 139, 0.9);
+    transition: opacity 0.1s;
+}
+.modal-backdrop.in{
+    opacity: 1;
+}
+.modal .modal-content{
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    border-radius: 0;
+}
+.modal.fade.in .modal-content{
+    -webkit-animation-name: anim-open;
+    animation-name: anim-open;
+    -webkit-animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+    animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+}
+
+.modal.fade .modal-content{
+    -webkit-animation-name: anim-close;
+    animation-name: anim-close;
+}
+@-webkit-keyframes anim-open {
+    0% { opacity: 0; -webkit-transform: scale(0); }
+    100% { opacity: 1; -webkit-transform: scale(1); }
+}
+
+@Keyframes anim-open {
+    0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); transform: scale3d(0, 0, 1); }
+    100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+}
+
+@-webkit-keyframes anim-close {
+    0% { opacity: 1; }
+    100% { opacity: 0; -webkit-transform: scale3d(0.5, 0.5, 1); }
+}
+
+@Keyframes anim-close {
+    0% { opacity: 1; }
+    100% { opacity: 0; -webkit-transform: scale3d(0.5, 0.5, 1); transform: scale3d(0.5, 0.5, 1); }
+}
+
+//table
+.table-action-col {
+    width: 10px;
+    color: #AAAAAA;
+    i:hover {
+        color: #dc2a2a;
+    }
+}
+
+//toaster
+.toast-container .toast:hover {
+    -webkit-box-shadow: 0 0 4px #999;
+     box-shadow: 0 0 4px #999; 
+    opacity: 1;
+    cursor: pointer;
+}
+
+.toast-container .toast {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+     border-radius: 0px; 
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+     -webkit-box-shadow: 0 0 1px #999; 
+     box-shadow: 0 0 1px #999; 
+    color: #fff;
+}

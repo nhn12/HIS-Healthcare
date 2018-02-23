@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './core/authentication/authentication.services';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -5,6 +6,11 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule, Http, XHRBackend, ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 // Import containers
 import {
@@ -84,7 +90,10 @@ import { HttpService } from 'app/core/http/http.service';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
     ChartsModule,
+    FormsModule,
   ],
   declarations: [
     AppComponent,

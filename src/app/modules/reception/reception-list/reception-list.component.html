@@ -2,10 +2,38 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <!-- <div class="card-header">
-           <i class="fa fa-align-justify"></i> Simple Table 
-        </div> -->
         <div class="card-body">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="button-group" style="margin-bottom:10px">
+                <button type="button" class="btn btn-success">
+                  <i class="fa fa-plus-circle"></i>&nbsp; Thêm</button>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="button-group" style="margin-bottom:10px">
+                <button type="button" class="btn btn-primary">
+                  <i class="icon-printer"></i>&nbsp; In</button>
+              </div>
+            </div>
+            <div class="col-md-2 offset-md-3">
+              <div class="input-group" style="margin-bottom:10px">
+                <span class="input-group-addon">
+                  <i class="icon-calendar"></i>
+                </span>
+                <input type="text" class="form-control" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker [(bsValue)]="bsValue" value='{{bsValue | date : "dd/MM/yyyy"}}'
+                  (ngModelChange)="changeDateReception()">
+              </div>
+            </div>
+            <div class="col-md-4 offset-md-1">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <input class="form-control ng-untouched ng-pristine ng-valid" placeholder="Search by name" type="text">
+              </div>
+            </div>
+          </div>
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -20,35 +48,32 @@
                 <th>STT</th>
                 <th>Mã PK</th>
                 <th>Mã CK</th>
+                <th>Nguồn ĐK</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let item of receptionList | async">
                 <td>12/12/2017</td>
                 <td>1</td>
-                <td>AVFGHYTJGODHGJFYTJD</td>
-                <td>Nguyễn Hoàng Nam</td>
-                <td>1995</td>
-                <td>Nam</td>
-                <td>12/12/2017</td>
+                <td>{{item.mabhyt}}</td>
+                <td>{{item.hoten}}</td>
+                <td>{{item.namsinh}}</td>
+                <td>
+                  <span *ngIf="item.gioitinh == 1">Nam</span>
+                  <span *ngIf="item.gioitinh == 2">Nữ</span>
+                </td>
+                <td>{{item.namsinh}}</td>
                 <td>07:00</td>
                 <td>12</td>
                 <td>12</td>
                 <td>12</td>
+                <td class="icon-source">
+                  <i class="icon-screen-desktop"></i>
+                </td>
               </tr>
-           
             </tbody>
           </table>
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
+          <app-paging-index [optionPaging]="pagingOption" (indexUpdate)="changeIndex($event)"></app-paging-index>
         </div>
       </div>
     </div>

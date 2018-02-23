@@ -36,7 +36,7 @@ export class DefaultCondition extends Condition {
                 operator = "$gte"
                 break;
             case ConditionOperator.BETWEEN:
-                operator = "between"
+                operator = "$between"
                 break;
             case ConditionOperator.IN:
                 operator = "$in"

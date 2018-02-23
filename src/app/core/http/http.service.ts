@@ -34,6 +34,7 @@ export class HttpService extends Http {
    * You can customize this method with your own extended behavior.
    */
   request(request: string|Request, options?: RequestOptionsArgs): Observable<Response> {
+    console.log("1232321312312");
     const requestOptions = options || {};
     let url: string;
 
