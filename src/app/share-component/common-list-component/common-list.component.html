@@ -1,0 +1,26 @@
+<ng-container *ngIf="type!='modal'">
+  <table [ngClass]="type=='modal'?'table table-responsive-sm  table-sm':'table table-bordered table-striped'">
+    <thead>
+      <tr>
+        <th *ngFor="let item of mapTable">{{item.title}}</th>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of receptionList| async">
+        <td *ngFor="let col of mapTable">{{item[col.col]}}</td>
+        <td class="table-action-col">
+          <i class="fa fa-trash" (click)="deleteItem(item)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-paging-index [optionPaging]="pagingOption" (indexUpdate)="changeIndex($event)"></app-paging-index>
+</ng-container>
+<ng-container *ngIf="type=='modal'">
+  <ul class="list-group" (keyup)="changeValue()">
+    <li class="list-group-item" *ngFor="let item of receptionList| async" [ngClass]="item['id']==selectedValue?'active':''" (click)="clickItem(item)">{{item.name}}</li>
+  </ul>
+</ng-container>

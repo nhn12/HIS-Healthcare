@@ -1,0 +1,38 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+          <div class="card-header">
+            <strong>Thông tin chuyên khoa</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="name">Tên</label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['name'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['name']" placeholder="Nhập tên chuyên khoa">
+                </div>
+              </div>
+            </div>
+            <!--/.row-->
+            <!-- <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Chuyên khoa</label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['specialization_id'].valid}" class="form-control" [formControl]="complexForm.controls['specialization_id']" id="ccnumber">
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div class="card-footer">
+            <button type="submit" [disabled]="!complexForm.valid" class="btn btn-sm btn-success">
+              <i class="fa fa-file-o"></i> Thêm</button>
+            <button type="reset" class="btn btn-sm btn-secondary">
+              <i class="fa fa-eraser" class="clear()"></i> Xóa</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

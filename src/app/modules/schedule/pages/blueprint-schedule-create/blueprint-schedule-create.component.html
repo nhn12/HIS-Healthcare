@@ -1,0 +1,80 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+                    <div class="card-header">
+                        <strong>Thông tin quy hoạch</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="company">Phòng khám</label>
+                            <input type="text"  (focus)="wardModal.show()" [formControl]="complexForm.controls['ward_name']" class="form-control" id="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Chuyên khoa</label>
+                            <input type="text" (focus)="specializationModal.show()" [formControl]="complexForm.controls['specialization_name']" class="form-control"
+                                id="company">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="city">Giờ bắt đầu</label>
+                                <input type="text" [textMask]="{mask: mask}" [formControl]="complexForm.controls['start_time']" class="form-control" id="city">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="postal-code">Giờ kết thúc</label>
+                                <input type="text" [textMask]="{mask: mask}" class="form-control" [formControl]="complexForm.controls['end_time']" id="postal-code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Thời gian trung bình (/phút)</label>
+                            <input type="number" class="form-control" id="country" [formControl]="complexForm.controls['period']">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" [disabled]="!complexForm.valid" class="btn btn-sm btn-success">
+                            <i class="fa fa-file-o"></i> Thêm</button>
+                        <button type="reset" class="btn btn-sm btn-danger">
+                            <i class="fa fa-eraser"></i> Xóa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</div>
+
+<div bsModal #wardModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Chuyên khoa</h4>
+                <button type="button" class="close" (click)="wardModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <common-list [resource]="'ward_tbl'" [type]="'modal'" [mapTable]="mapWard" [selected]="data.ward_id" (selectItem)="selectWard($event);"></common-list>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #specializationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Chuyên khoa</h4>
+                <button type="button" class="close" (click)="specializationModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <common-list [resource]="'specialization_tbl'" [type]="'modal'" [mapTable]="mapSpecialization" [selected]="data.specialization_id"
+                    (selectItem)="selectSpecialization($event);"></common-list>
+            </div>
+        </div>
+    </div>
+</div>

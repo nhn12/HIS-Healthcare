@@ -1,0 +1,74 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="button-group" style="margin-bottom:10px">
+                <button type="button" class="btn btn-success" (click)="add($event)">
+                  <i class="fa fa-plus-circle"></i>&nbsp; Thêm</button>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="input-group" style="margin-bottom:10px">
+                <button type="button" class="btn btn-primary" (click)="add($event)">
+                  <i class="fa fa-gavel"></i>&nbsp; Quy hoạch</button>
+              </div>
+            </div>
+            <div class="col-md-2 offset-md-1">
+              <div class="input-group" style="margin-bottom:10px">
+                <button type="button" class="btn btn-primary" (click)="wardModal.show();">
+                  <i class="fa fa-info-circle"></i>&nbsp; Thông tin quy hoạch</button>
+              </div>
+            </div>
+            <div class="col-md-4 offset-md-3">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <input class="form-control ng-untouched ng-pristine ng-valid" placeholder="Search by name" type="text">
+              </div>
+            </div>
+          </div>
+          <common-list [resource]="'blueprint_schedule_tbl'" [mapTable]="mapTable" (removeItem)="removeItem($event)"></common-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #wardModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Quy hoạch</h4>
+                <button type="button" class="close" (click)="wardModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 5px;">
+                <div class="container" style="padding-left: 0px;">
+                    <div class="row">
+                      <div class="col-md-3" style="padding-right: 0px;">
+                          <ul class="list-group">
+                              <li class="list-group-item" [ngClass]="index==0?'active':''" (click)="selectOptionSchedule(0)">Tháng</li>
+                              <li class="list-group-item" [ngClass]="index==1?'active':''" (click)="selectOptionSchedule(1)">Quý</li>
+                              <li class="list-group-item" [ngClass]="index==2?'active':''" (click)="selectOptionSchedule(2)">Năm</li>
+                              <li class="list-group-item" [ngClass]="index==3?'active':''" (click)="selectOptionSchedule(3)">Ngày</li>
+                              <li class="list-group-item" [ngClass]="index==4?'active':''" (click)="selectOptionSchedule(4)">Vestib</li>
+                            </ul>
+                      </div>
+                      <div class="col-md-9" style="padding-right: 0px;">
+                          <div class="card" style="height: 100%;">
+                              <div class="card-body">
+                                This is some text within a card body.
+                              </div>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
