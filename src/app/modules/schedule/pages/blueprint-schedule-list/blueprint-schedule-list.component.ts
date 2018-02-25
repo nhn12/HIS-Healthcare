@@ -46,4 +46,8 @@ export class BlueprintScheduleListComponent implements OnInit {
   add(data) {
     this.route.navigate(['/schedule/blueprint-schedule-create'], { replaceUrl: true });
   }
+
+  quyhoach() {
+    
+  }
 }
