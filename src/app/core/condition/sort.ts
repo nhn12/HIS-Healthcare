@@ -10,8 +10,9 @@ export abstract class Order {
 }
 export class CommonOrder extends Order{
     public printPretty() {
+        let self = this;
         let result:any = {};
-        result[this.key] = this.type == ORDER_TYPE.ASC ? 1 : -1;
+        result[self.key] = self.type == ORDER_TYPE.ASC ? 1 : -1;
         return result;
     }
 
