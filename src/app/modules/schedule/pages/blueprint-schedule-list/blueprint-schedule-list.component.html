@@ -39,36 +39,105 @@
 </div>
 
 <div bsModal #wardModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Quy hoạch</h4>
-                <button type="button" class="close" (click)="wardModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Quy hoạch</h4>
+        <button type="button" class="close" (click)="wardModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 5px;">
+        <div class="container" style="padding-left: 0px;">
+          <div class="row">
+            <div class="col-md-3" style="padding-right: 0px;">
+              <ul class="list-group">
+                <li class="list-group-item" [ngClass]="scheduleOption.option=='date'?'active':''" (click)="selectOptionSchedule('date')">Ngày</li>
+                <li class="list-group-item" [ngClass]="scheduleOption.option=='month'?'active':''" (click)="selectOptionSchedule('month')">Tháng</li>
+                <li class="list-group-item" [ngClass]="scheduleOption.option=='quarter'?'active':''" (click)="selectOptionSchedule('quarter')">Quý</li>
+                <li class="list-group-item" [ngClass]="scheduleOption.option=='year'?'active':''" (click)="selectOptionSchedule('year')">Năm</li>
+              </ul>
             </div>
-            <div class="modal-body" style="padding: 5px;">
-                <div class="container" style="padding-left: 0px;">
+            <div class="col-md-9" style="padding-right: 0px;">
+              <div class="card" style="height: 100%;">
+                <div class="card-body">
+                  <div *ngIf="scheduleOption.option == 'date'">
                     <div class="row">
-                      <div class="col-md-3" style="padding-right: 0px;">
-                          <ul class="list-group">
-                              <li class="list-group-item" [ngClass]="index==0?'active':''" (click)="selectOptionSchedule(0)">Tháng</li>
-                              <li class="list-group-item" [ngClass]="index==1?'active':''" (click)="selectOptionSchedule(1)">Quý</li>
-                              <li class="list-group-item" [ngClass]="index==2?'active':''" (click)="selectOptionSchedule(2)">Năm</li>
-                              <li class="list-group-item" [ngClass]="index==3?'active':''" (click)="selectOptionSchedule(3)">Ngày</li>
-                              <li class="list-group-item" [ngClass]="index==4?'active':''" (click)="selectOptionSchedule(4)">Vestib</li>
-                            </ul>
+                      <div class="col-md">
+                        <fieldset class="form-group">
+                          <label>Hôm nay</label>
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <input type="radio" aria-label="..." [(ngModel)]="scheduleOption.subOption" value='today'>
+                            </span>
+                            <input type="text" class="form-control" aria-label="..." style="background: transparent" [readonly]="true" value="{{currentDate | date:'dd/MM/yyyy'}}">
+                          </div>
+                        </fieldset>
                       </div>
-                      <div class="col-md-9" style="padding-right: 0px;">
-                          <div class="card" style="height: 100%;">
-                              <div class="card-body">
-                                This is some text within a card body.
-                              </div>
-                            </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md">
+                        <fieldset class="form-group">
+                          <label>Ngày mai</label>
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <input type="radio" aria-label="..." [(ngModel)]="scheduleOption.subOption" value='tomorrow'>
+                            </span>
+                            <input type="text" class="form-control" aria-label="..." style="background: transparent" [readonly]="true" value="{{tomorrowDate | date:'dd/MM/yyyy'}}">
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md">
+                        <fieldset class="form-group">
+                          <label>Tùy chọn ngày</label>
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <input type="radio" aria-label="..." [(ngModel)]="scheduleOption.subOption" value='optiondate'>
+                            </span>
+                            <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(bsValue)]="scheduleOption.startDate" value='{{scheduleOption.startDate | date : "dd/MM/yyyy"}}'>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md">
+                        <fieldset class="form-group">
+                          <label>Từ ngày - đến ngày</label>
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <input type="radio" aria-label="..." [(ngModel)]="scheduleOption.subOption" value='optionrangedate'>
+                            </span>
+                            <input type="text" class="form-control" aria-label="...">
+                          </div>
+                        </fieldset>
                       </div>
                     </div>
                   </div>
+                  <div *ngIf="scheduleOption.option == 'month'">
+
+                  </div>
+                  <div *ngIf="scheduleOption.option == 'quarter'">
+
+                  </div>
+                  <div *ngIf="scheduleOption.option == 'year'">
+
+                  </div>
+
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="card-footer right-content">
+        <button type="reset" class="btn btn-sm btn-danger">
+          <i class="fa fa-close"></i> Hủy</button>
+        <button type="submit" style="margin-left:10px" (click)="quyhoach()" class="btn btn-sm btn-success">
+          <i class="fa fa-file-o"></i> Quy hoạch</button>
+      </div>
+
     </div>
+  </div>
 </div>

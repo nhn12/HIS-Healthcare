@@ -16,7 +16,8 @@ export class DefaultCondition extends Condition {
     public printPretty() {
         let result: any = {};
         let operator;
-        switch (this.operator) {
+        let self = this;
+        switch (self.operator) {
             case ConditionOperator.EQ:
                 operator = "$eq"
                 break;
@@ -43,8 +44,8 @@ export class DefaultCondition extends Condition {
                 break;
         }
 
-        result[this.key] = {};
-        result[this.key][operator] = this.value
+        result[self.key] = {};
+        result[self.key][operator] = self.value
         return result;
     }
 }

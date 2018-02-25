@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppConstants } from 'app/utils/app-constants';
 import { CategoryService } from 'app/modules/category/services/category.service';
 import { TableMappingDto } from 'app/modules/category/services/data/table-mapping-dto';
+import { ScheduleOptionDto } from 'app/modules/schedule/pages/blueprint-schedule-list/data/schedule-option-dto';
 
 @Component({
   templateUrl: 'blueprint-schedule-list.component.html',
@@ -15,6 +16,11 @@ export class BlueprintScheduleListComponent implements OnInit {
   mapTable: TableMappingDto[] = [];
 
   index: number = 0;
+
+  scheduleOption: ScheduleOptionDto = new ScheduleOptionDto();
+
+  currentDate: Date = new Date();
+  tomorrowDate: Date = new Date(new Date().getTime() + 24*60*60*1000);
   constructor(private route: Router) {
 
   }
@@ -25,10 +31,12 @@ export class BlueprintScheduleListComponent implements OnInit {
     this.mapTable.push(new TableMappingDto('Bắt đầu', 'start_time'));
     this.mapTable.push(new TableMappingDto('Kết thúc', 'end_time'));
     this.mapTable.push(new TableMappingDto('TGTB khám', 'period'));
+
+    this.scheduleOption.option = 'date';
   }
 
   selectOptionSchedule(index) {
-    this.index = index;
+    this.scheduleOption.option = index;
   }
 
   removeItem(item) {
