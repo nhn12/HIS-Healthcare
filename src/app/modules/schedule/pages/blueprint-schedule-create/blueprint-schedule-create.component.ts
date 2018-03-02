@@ -13,7 +13,7 @@ import to from '../../../../utils/promise-utils'
 import { WardDto } from 'app/modules/category/pages/ward/data/ward-dto';
 import { TableMappingDto } from 'app/modules/category/services/data/table-mapping-dto';
 import { BlueprintScheduleDto } from 'app/modules/schedule/pages/blueprint-schedule-create/data/BluePrintScheduleDto';
-import { ScheduleService } from 'app/modules/schedule/service/schedule-service';
+import { BlueprintScheduleService } from 'app/modules/schedule/service/blueprint-schedule-service';
 
 
 declare var jQuery: any;
@@ -22,7 +22,7 @@ declare var jQuery: any;
     templateUrl: 'blueprint-schedule-create.component.html',
     selector: "blueprint-schedule-create",
     styleUrls: ['blueprint-schedule-create.component.scss'],
-    providers: [ScheduleService]
+    providers: [BlueprintScheduleService]
 })
 
 export class BlueprintScheduleCreateComponent implements OnInit {
@@ -37,7 +37,7 @@ export class BlueprintScheduleCreateComponent implements OnInit {
     data: BlueprintScheduleDto = new BlueprintScheduleDto();
 
     public mask = [new RegExp('^[0-1]?[0-1]$'), new RegExp('^[0-1]?[0-9]$'), ':', new RegExp('^[0-1]?[0-5]$'), new RegExp('^[0-1]?[0-9]$')];
-    constructor(public router: Router, fb: FormBuilder, public scheduleService: ScheduleService) {
+    constructor(public router: Router, fb: FormBuilder, public scheduleService: BlueprintScheduleService) {
         this.complexForm = fb.group({
             'ward_name': [null, Validators.required],
             'specialization_name': [null, Validators.compose([Validators.required])],

@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { CommonService } from "app/core/common-services/common-service";
 
 @Injectable()
-export class ScheduleService extends CommonService{
+export class BlueprintScheduleService extends CommonService{
     protected getUrlForList(): string {
         throw new Error("Method not implemented.");
     }
@@ -13,7 +13,7 @@ export class ScheduleService extends CommonService{
         throw new Error("Method not implemented.");
     }
     protected getUrlForAdd(): string {
-        return "schedule/insert"
+        return "blueprint_schedule/insert"
     }
     protected getUrlForUpdate(): string {
         throw new Error("Method not implemented.");
