@@ -2,6 +2,8 @@ export const AppConstants =  {
      DOMAIN_SERVER: "http://localhost:3006/",
      DEFAULT_NUMBER_RECORD_PER_PAGE: 10,
 
+     DEFAULT_DATE_FORMAT: 'dd/MM/yyyy',
+
      COMMON_MESSAGE_SAVE_SUCCESS: 'Thông tin đã được lưu',
      COMMON_MESSAGE_SAVE_FAILED: 'Quá trình lưu bị lỗi. Thử lại!',
 

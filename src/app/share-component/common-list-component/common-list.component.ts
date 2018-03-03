@@ -18,11 +18,13 @@ import { TableMappingDto } from 'app/modules/category/services/data/table-mappin
 export class CommonListComponent implements OnInit {
   @Input("resource") resource: string;
   @Input("type") type: string;
-  @Output() selectItem = new EventEmitter();
   @Input("mapTable") mapTable: TableMappingDto[] = [];
   @Input("selected") selectedValue: any;
+  //@Input("option") option: 
 
   @Output() removeItem = new EventEmitter();
+  @Output() selectItem = new EventEmitter();
+
   filter: CommonFilter;
   paging: CommonPaging;
   sort: CommonSort;
@@ -35,6 +37,8 @@ export class CommonListComponent implements OnInit {
 
   maxDate: Date = (new Date());
   bsValue: Date = (new Date());
+
+  dateFormat: string = AppConstants.DEFAULT_DATE_FORMAT;
   constructor(private receptionService: CategoryService) {
 
   }
@@ -60,7 +64,7 @@ export class CommonListComponent implements OnInit {
       if(propName == 'resource') {
         this.receptionService.setResource(this.resource);
         this.paging = new CommonPaging(0, AppConstants.DEFAULT_NUMBER_RECORD_PER_PAGE);
-        this.sort = new CommonSort([new CommonOrder("name", ORDER_TYPE.ASC)]);
+        this.sort = new CommonSort([new CommonOrder("id", ORDER_TYPE.ASC)]);
         this.getReceptions(this.filter, this.sort, this.paging, true);
       }
 

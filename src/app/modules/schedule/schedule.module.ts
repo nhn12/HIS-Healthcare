@@ -15,6 +15,8 @@ import { BlueprintScheduleCreateComponent } from 'app/modules/schedule/pages/blu
 import { ScheduleRoutingModule } from 'app/modules/schedule/schedule-routing.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { BlueprintScheduleListComponent } from 'app/modules/schedule/pages/blueprint-schedule-list/blueprint-schedule-list.component';
+import { LaddaModule } from 'angular2-ladda';
+import { ScheduleListComponent } from './pages/schedule-list/schedule-list.component';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -35,9 +37,12 @@ export function createHttpService(backend: ConnectionBackend,
     ModalModule.forRoot(),
     ScheduleRoutingModule,
     TextMaskModule,
-    CommonListModule
+    CommonListModule,
+    LaddaModule.forRoot({
+      style: "expand-left",
+    })
   ],
-  declarations: [BlueprintScheduleCreateComponent, BlueprintScheduleListComponent],
+  declarations: [BlueprintScheduleCreateComponent, BlueprintScheduleListComponent, ScheduleListComponent],
   providers: [
     AuthenticationService,
     HttpCacheService,

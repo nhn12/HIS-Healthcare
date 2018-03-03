@@ -27,6 +27,8 @@ export class BlueprintScheduleListComponent implements OnInit {
   currentDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().getTime() + 24*60*60*1000);
   rangeDate: any;
+
+  isLoading: boolean = false;
   @ViewChild(ModalDirective) wardModal: ModalDirective;
 
   constructor(private route: Router, public scheduleService: ScheduleService) {
@@ -40,8 +42,6 @@ export class BlueprintScheduleListComponent implements OnInit {
     this.mapTable.push(new TableMappingDto('Kết thúc', 'end_time'));
     this.mapTable.push(new TableMappingDto('TGTB khám', 'period'));
     this.initScheduleForm();
-
-    //this.scheduleOption.option = 'date';
   }
 
   initScheduleForm() {
@@ -55,25 +55,17 @@ export class BlueprintScheduleListComponent implements OnInit {
     console.log(this.scheduleOption);
 
     this.scheduleOption.push(new ScheduleOptionDto("month", null, null, "Tháng", true, false,  null, false, [
-      // new ScheduleOptionDto("totday", new Date(), new Date(), "Hôm nay", false, null),
-      // new ScheduleOptionDto("tomorrow", this.tomorrowDate, this.tomorrowDate, "Ngày mai", false, null),
-      // new ScheduleOptionDto("option_date", null, null, "Tuỳ chọn", false, null),
-      // new ScheduleOptionDto("range_date", null, null, "Từ ngày - đến ngày", false, null)
     ]))
 
     this.scheduleOption.push(new ScheduleOptionDto("quarter", null, null, "Qúy", true, false,  null, false, [
-      // new ScheduleOptionDto("totday", new Date(), new Date(), "Hôm nay", false, null),
-      // new ScheduleOptionDto("tomorrow", this.tomorrowDate, this.tomorrowDate, "Ngày mai", false, null),
-      // new ScheduleOptionDto("option_date", null, null, "Tuỳ chọn", false, null),
-      // new ScheduleOptionDto("range_date", null, null, "Từ ngày - đến ngày", false, null)
     ]))
 
     this.scheduleOption.push(new ScheduleOptionDto("year", null, null, "Năm", true, false,  null, false, [
-      // new ScheduleOptionDto("totday", new Date(), new Date(), "Hôm nay", false, null),
-      // new ScheduleOptionDto("tomorrow", this.tomorrowDate, this.tomorrowDate, "Ngày mai", false, null),
-      // new ScheduleOptionDto("option_date", null, null, "Tuỳ chọn", false, null),
-      // new ScheduleOptionDto("range_date", null, null, "Từ ngày - đến ngày", false, null)
     ]))
+  }
+
+  detailSchedule() {
+    this.route.navigate(['/schedule/schedule-list'], { replaceUrl: true });
   }
 
   selectOptionSchedule(index, list: ScheduleOptionDto[]) {
@@ -97,15 +89,16 @@ export class BlueprintScheduleListComponent implements OnInit {
 
   public async quyhoach() {
     let item = this.checkValidate();
-    if(item.type == 'date_range'){
+    if(item.type == 'date_range') {
        item.end_time = item.start_time[1];
        item.start_time = item.start_time[0];
     }
     if(item) {
+      this.isLoading = true;
       let [err, response] = await to(this.scheduleService.insertOne(item).toPromise());
+      this.isLoading = false;
       this.wardModal.hide();
     }
-    
   }
 
   checkValidate() {

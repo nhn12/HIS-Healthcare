@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BlueprintScheduleCreateComponent } from 'app/modules/schedule/pages/blueprint-schedule-create/blueprint-schedule-create.component';
 import { BlueprintScheduleListComponent } from 'app/modules/schedule/pages/blueprint-schedule-list/blueprint-schedule-list.component';
+import { ScheduleListComponent } from './pages/schedule-list/schedule-list.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,14 @@ const routes: Routes = [
             data: {
               title:"Quy hoạch giờ"
             }
-        }
+        },
+        {
+          path: "schedule-list",
+          component: ScheduleListComponent,
+          data: {
+            title:"Thông tin quy hoạch"
+          }
+      }
     ]
   }
 ];
