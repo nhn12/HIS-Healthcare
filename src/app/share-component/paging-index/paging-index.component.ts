@@ -42,9 +42,9 @@ export class PagingIndexComponent implements OnInit {
     }
 
     for (var i = startIndex; i < this.optionPaging.totalRecords / this.optionPaging.limit; i++) {
-      if (++countIndex > this.LIMIT_PAGE_INDEX) {
-        return;
-      }
+      // if (++countIndex > this.LIMIT_PAGE_INDEX) {
+      //   return;
+      // }
       this.indexList.push({ index: i, active: this.optionPaging.indexActive == i ? true : false });
     }
   }
