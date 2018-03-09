@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="row" formArrayName="prices">
-              <ng-container *ngFor="let item of complexForm.controls.prices.controls; let i=index">
+              <ng-container *ngFor="let item of complexForm['controls'].prices.controls; let i=index">
                 <ng-container [formGroupName]="i">
                   <div class="col-md-4">
                     <input type="number" formControlName="price" placeholder="Giá dịch vụ" class="form-control" />
