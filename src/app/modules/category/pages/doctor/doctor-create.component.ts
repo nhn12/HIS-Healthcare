@@ -17,23 +17,25 @@ import { mapValueToField } from '../../../../utils/form-mapping';
 import { CommonForm } from '../../../../core/common-form/common-form';
 import { CommonService } from '../../../../core/common-services/common-service';
 import { Location } from '@angular/common';
+import { DefaultCondition, ConditionOperator } from '../../../../core/condition/condition';
 
 
 declare var jQuery:any;
 
 @Component({
-  templateUrl: 'ward-create.component.html',
-  selector: "ward-create",
-  styleUrls: ['ward-create.component.scss'],
+  templateUrl: 'doctor-create.component.html',
+  selector: "doctor-create",
+  styleUrls: ['doctor-create.component.scss'],
   providers: [CategoryService]
 })
 
-export class WardCreateComponent extends CommonForm implements OnInit {
+export class DoctorCreateComponent extends CommonForm implements OnInit {
   
-
   @ViewChild(ModalDirective) myModal: ModalDirective;
 
   mapTable: TableMappingDto[] = [];
+
+  listGender: any[] = [];
   constructor(public location: Location, 
     public router: Router, 
     public routeP: ActivatedRoute, 
@@ -44,28 +46,33 @@ export class WardCreateComponent extends CommonForm implements OnInit {
 
   ngOnInit() {
     this.mapTable.push(new TableMappingDto('Tên', 'name'));
-    this.categoryService.setResource("ward_tbl");
+    this.categoryService.setResource("doctor_tbl");
+    this.getSpecializationType();
   }
 
   public initFormBuilder() {
     this.complexForm = this.fb.group({
       'id' : [null],
-      'name' : [null, Validators.required],
-      'specialization_name': [null, Validators.compose([Validators.required])],
+      'firstname' : [null, Validators.required],
+      'lastname' : [null, Validators.required],
+      'birthday': [null, Validators.compose([Validators.required])],
       'specialization_id': [],
+      'specialization_name': [null, Validators.required],
+      'gender': [null, Validators.required]
     })
   }
+
+
   public setService(): CommonService {
-    this.categoryService.setResource('ward_tbl');
+    this.categoryService.setResource('doctor_tbl');
     return this.categoryService;
+  }
+  public getSubForms() {
+    return undefined;
   }
 
   public setMappingData() {
-    return null;
-  }
-
-  public getSubForms() {
-    return undefined;
+    return {birthday: 'date'};
   }
 
   selectSpec($event) {
@@ -74,6 +81,18 @@ export class WardCreateComponent extends CommonForm implements OnInit {
     this.complexForm.controls['specialization_id'].setValue($event['id']);
     this.data.specialization_name = $event['name'];
     this.data.specialization_id = $event['id'];
+  }
+
+  async getSpecializationType() {
+    let [err, response] = await to<any>(this.categoryService.getList(new CommonFilter(
+      new DefaultCondition(ConditionOperator.EQ, 'class', 'GENDER')), null, null, {resource: "type_tbl"}).toPromise());
+    if(response && response.results && response.results.length > 0) {
+      this.listGender = response.results.map(value=>{
+        value.id = value.code;
+        value.text = value.name;
+        return value;
+      })
+    }
   }
 
   clear() {

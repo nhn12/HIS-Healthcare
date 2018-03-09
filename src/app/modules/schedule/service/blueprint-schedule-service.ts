@@ -16,7 +16,7 @@ export class BlueprintScheduleService extends CommonService{
         return "blueprint_schedule/insert"
     }
     protected getUrlForUpdate(): string {
-        throw new Error("Method not implemented.");
+        return "blueprint_schedule/update"
     }
     protected getUrlForDelete(): string {
         throw new Error("Method not implemented.");
@@ -27,8 +27,8 @@ export class BlueprintScheduleService extends CommonService{
     protected getBodyRequestForInsert(data: any) {
         return data;
     }
-    protected getBodyRequestForUpdate() {
-        throw new Error("Method not implemented.");
+    protected getBodyRequestForUpdate(data: any) {
+        return data;
     }
     protected getBodyRequestForDelete() {
         throw new Error("Method not implemented.");

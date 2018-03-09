@@ -16,8 +16,12 @@ export abstract class CommonService {
 
     }
 
-    public getList<T>(filter: Filter, sort: Sort, paging: Paging): Observable<T> {
-        return this.http.post(this.getUrlForList(), this.getBodyRequestForList(filter, sort, paging), new RequestOptions({ headers: this.buildAuthentication() })).map(value => {
+    public getList<T>(filter: Filter, sort: Sort, paging: Paging, option?: any): Observable<T> {
+        let resource;
+        if(option && option.resource) {
+            resource = option.resource;
+        }
+        return this.http.post(this.getUrlForList(), this.getBodyRequestForList(filter, sort, paging, resource), new RequestOptions({ headers: this.buildAuthentication() })).map(value => {
             let tempValue = value.json();
             return this.handleResponse(tempValue, 'getlist');
         }).catch(err => {
@@ -35,6 +39,7 @@ export abstract class CommonService {
     }
 
     public insertOne<T>(data: T): Observable<T> {
+        data = this.processData(data);
         return this.http.post(this.getUrlForAdd(),JSON.stringify(this.getBodyRequestForInsert(data)), new RequestOptions({ headers: this.buildAuthentication() })).map(value => {
             let tempValue = value.json();
             return this.handleResponse(tempValue, 'insert');
@@ -44,6 +49,7 @@ export abstract class CommonService {
     }
 
     public updateOne<T>(data: T): Observable<T> {
+        data = this.processData(data);
         return this.http.post(this.getUrlForUpdate(), this.getBodyRequestForUpdate(data), new RequestOptions({ headers: this.buildAuthentication() })).map(value => {
             let tempValue = value.json();
             return this.handleResponse(tempValue, 'update');
@@ -90,7 +96,7 @@ export abstract class CommonService {
                 }
                 if(action == 'delete') {
                     message = AppConstants.COMMON_MESSAGE_DELETE_SUCCESS;
-                    this.toastr.success(message, undefined,  {timeOut: 5000000, });
+                    this.toastr.success(message);
                 }
                 break;
             case '500': 
@@ -119,8 +125,27 @@ export abstract class CommonService {
     protected abstract getUrlForUpdate(): string;
     protected abstract getUrlForDelete(): string;
 
-    protected abstract getBodyRequestForList(filter: Filter, sort: Sort, paging: Paging): any;
+    protected abstract getBodyRequestForList(filter: Filter, sort: Sort, paging: Paging, resource): any;
     protected abstract getBodyRequestForInsert(data): any;
     protected abstract getBodyRequestForUpdate(data): any;
     protected abstract getBodyRequestForDelete(data): any;
+
+    private processData(data) {
+        if(!data) {
+            return data;
+        }
+
+        if(data.id == null || data.id == undefined || data.id == '') {
+            return data;
+        }
+
+        if((typeof data.id) == 'string') {
+            let temp = parseInt(data.id);
+            if(temp != NaN) {
+                data.id = temp;
+            }
+        }
+
+        return data;
+    }
 }

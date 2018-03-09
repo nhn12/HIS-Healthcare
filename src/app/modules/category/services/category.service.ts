@@ -17,14 +17,14 @@ export class CategoryService extends CommonService {
         return this.resource.replace('_tbl', '') + "/insert";
     }
     protected getUrlForUpdate(): string {
-        throw new Error("Method not implemented.");
+        return this.resource.replace('_tbl', '') + "/update";
     }
     protected getUrlForDelete(): string {
         return this.resource.replace('_tbl', '') + "/delete";
     }
-    protected getBodyRequestForList(filter: Filter, sort: Sort, paging: Paging): any {
+    protected getBodyRequestForList(filter: Filter, sort: Sort, paging: Paging, resource?: string): any {
         let obj:any = {};
-        obj.resource = this.resource;
+        obj.resource = (resource?resource: this.resource);
         if(filter) {
             obj = filter.printPretty(obj);
         }
@@ -41,7 +41,7 @@ export class CategoryService extends CommonService {
         return obj;
     }
     protected getBodyRequestForUpdate(data) {
-        throw new Error("Method not implemented.");
+        return data;
     }
     protected getBodyRequestForDelete(data) {
         return {id: data.id};

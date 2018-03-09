@@ -1,3 +1,4 @@
+import { Option } from './../../../../share-component/common-list-component/common-list.component';
 import { ScheduleService } from 'app/modules/schedule/service/schedule-service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
@@ -29,6 +30,8 @@ export class ScheduleListComponent implements OnInit {
   rangeDate: any;
 
   isLoading: boolean = false;
+
+  option: Option;
   @ViewChild(ModalDirective) wardModal: ModalDirective;
 
   constructor(private route: Router) {
@@ -41,6 +44,11 @@ export class ScheduleListComponent implements OnInit {
     this.mapTable.push(new TableMappingDto('Ngày khám', 'start_time', 'date'));
     this.mapTable.push(new TableMappingDto('Giờ khám', 'start_time_string'));
     this.mapTable.push(new TableMappingDto('Thời gian', 'period'));
+
+    this.option = new Option();
+    this.option.isDelete = false;
+    this.option.isEdit = false;
+    this.option.isAdd = false;
     //this.scheduleOption.option = 'date';
   }
 

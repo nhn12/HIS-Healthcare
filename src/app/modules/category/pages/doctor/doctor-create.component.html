@@ -8,14 +8,38 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="name">Tên</label>
-                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['name'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['name']"
-                    placeholder="Nhập tên phòng khám">
+                  <label for="name">Họ </label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['firstname']"
+               >
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="name">Tên </label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['lastname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['lastname']"
+                 >
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Giới tính</label>
+                  <ngx-select formControlName="gender" [items]="listGender"  placeholder=""></ngx-select>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Ngày sinh</label>
+                  <input formControlName="birthday" class="form-control" bsDatepicker/>
+                  </div>
+              </div>
+            </div>
+            <!--/.row-->
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">

@@ -1,5 +1,7 @@
+import { Option } from './../../../../share-component/common-list-component/common-list.component';
+import { Location } from '@angular/common';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonFilter } from './../../../../core/condition/filter';
 import { CommonPaging } from './../../../../core/condition/paging';
 import { ReceptionListService } from 'app/modules/reception/service/reception-list.service';
@@ -14,6 +16,8 @@ import { WardDto } from 'app/modules/category/pages/ward/data/ward-dto';
 import { TableMappingDto } from 'app/modules/category/services/data/table-mapping-dto';
 import { BlueprintScheduleDto } from 'app/modules/schedule/pages/blueprint-schedule-create/data/BluePrintScheduleDto';
 import { BlueprintScheduleService } from 'app/modules/schedule/service/blueprint-schedule-service';
+import { CommonForm } from '../../../../core/common-form/common-form';
+import { CommonService } from '../../../../core/common-services/common-service';
 
 
 declare var jQuery: any;
@@ -25,9 +29,7 @@ declare var jQuery: any;
     providers: [BlueprintScheduleService]
 })
 
-export class BlueprintScheduleCreateComponent implements OnInit {
-    complexForm: FormGroup;
-
+export class BlueprintScheduleCreateComponent extends CommonForm implements OnInit {
     @ViewChild('wardModal') wardModal: ModalDirective;
     @ViewChild('specializationModal') specializationModal: ModalDirective;
 
@@ -36,9 +38,22 @@ export class BlueprintScheduleCreateComponent implements OnInit {
 
     data: BlueprintScheduleDto = new BlueprintScheduleDto();
 
+    option: Option;
+
     public mask = [new RegExp('^[0-1]?[0-1]$'), new RegExp('^[0-1]?[0-9]$'), ':', new RegExp('^[0-1]?[0-5]$'), new RegExp('^[0-1]?[0-9]$')];
-    constructor(public router: Router, fb: FormBuilder, public scheduleService: BlueprintScheduleService) {
-        this.complexForm = fb.group({
+    constructor(public location: Location, public router: Router, public routeP: ActivatedRoute, fb: FormBuilder, public scheduleService: BlueprintScheduleService) {
+        super(location, router, routeP ,fb);
+    }
+
+    ngOnInit() {
+        this.mapWard.push(new TableMappingDto('Tên', 'name'));
+        this.mapSpecialization.push(new TableMappingDto('Tên', 'name'));
+        this.option = new Option();
+    }
+
+    public initFormBuilder() {
+        this.complexForm = this.fb.group({
+            'id': [null],
             'ward_name': [null, Validators.required],
             'specialization_name': [null, Validators.compose([Validators.required])],
             'start_time': [null, Validators.required],
@@ -46,20 +61,18 @@ export class BlueprintScheduleCreateComponent implements OnInit {
             'period': [null, Validators.compose([Validators.required, Validators.max(99), Validators.min(1)])],
             'specialization_id': [null, Validators.required],
             'ward_id': [null, Validators.required],
-        })
+        });
+    }
+    public setService(): CommonService {
+        return this.scheduleService;
+    }
+    
+    public setMappingData() {
+        return null;
     }
 
-    ngOnInit() {
-        this.mapWard.push(new TableMappingDto('Tên', 'name'));
-        this.mapSpecialization.push(new TableMappingDto('Tên', 'name'));
-    }
-
-    async submitForm(value: any) {
-        let [err, response] = await to(this.scheduleService.insertOne(value).toPromise());
-        if(!err && response) {
-            this.router.navigate(['/schedule/blueprint-schedule-list'], { replaceUrl: true });
-        }
-
+    public getSubForms() {
+        return null;
     }
 
     selectWard($event) {

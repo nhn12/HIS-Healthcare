@@ -1,3 +1,4 @@
+import { Option } from './../../../../share-component/common-list-component/common-list.component';
 import { ScheduleService } from 'app/modules/schedule/service/schedule-service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
@@ -29,6 +30,8 @@ export class BlueprintScheduleListComponent implements OnInit {
   rangeDate: any;
 
   isLoading: boolean = false;
+
+  option: Option;
   @ViewChild(ModalDirective) wardModal: ModalDirective;
 
   constructor(private route: Router, public scheduleService: ScheduleService) {
@@ -41,6 +44,9 @@ export class BlueprintScheduleListComponent implements OnInit {
     this.mapTable.push(new TableMappingDto('Bắt đầu', 'start_time'));
     this.mapTable.push(new TableMappingDto('Kết thúc', 'end_time'));
     this.mapTable.push(new TableMappingDto('TGTB khám', 'period'));
+
+    this.option = new Option();
+    this.option.urlCreate = "/schedule/blueprint-schedule-create";
     this.initScheduleForm();
   }
 
@@ -93,6 +99,11 @@ export class BlueprintScheduleListComponent implements OnInit {
        item.end_time = item.start_time[1];
        item.start_time = item.start_time[0];
     }
+
+    if(item.option == 'option_date') {
+      item.end_time = item.start_time;
+    }
+
     if(item) {
       this.isLoading = true;
       let [err, response] = await to(this.scheduleService.insertOne(item).toPromise());

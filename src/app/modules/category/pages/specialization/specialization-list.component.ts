@@ -1,3 +1,4 @@
+import { Option } from './../../../../share-component/common-list-component/common-list.component';
 import { Router } from '@angular/router';
 import { TableMappingDto } from './../../services/data/table-mapping-dto';
 import { CommonFilter } from './../../../../core/condition/filter';
@@ -19,14 +20,13 @@ import { CategoryService } from 'app/modules/category/services/category.service'
 export class SpecializationListComponent implements OnInit {
 
   mapTable: TableMappingDto[] = [];
+  option: Option;
   constructor(private route: Router) {
   }
 
   ngOnInit() {
     this.mapTable.push(new TableMappingDto('Tên', 'name'));
-  }
-
-  add(data) {
-    this.route.navigate(['/category/chuyen-khoa-create'], { replaceUrl: true });
+    this.option = new Option();
+    this.option.urlCreate = "/category/chuyen-khoa-create";
   }
 }

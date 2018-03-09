@@ -1,3 +1,4 @@
+import { DoctorCreateComponent } from './pages/doctor/doctor-create.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SpecializationCreateComponent } from './pages/specialization/specialization-create.component';
 import { SpecializationListComponent } from './pages/specialization/specialization-list.component';
@@ -15,7 +16,9 @@ import { WardListComponent } from 'app/modules/category/pages/ward/ward-list.com
 import { WardCreateComponent } from 'app/modules/category/pages/ward/ward-create.component';
 import {SelectModule} from 'ng2-select';
 import { CommonListModule } from 'app/share-component/common-list-component/common-list-component.module';
-
+import { SpecializationPricePartialComponent } from './pages/specialization/specialization-price-partial.component';
+import { NgxSelectModule } from 'ngx-select-ex';
+import { DoctorListComponent } from './pages/doctor/doctor-list.component';
 
 export function createHttpService(backend: ConnectionBackend,
   defaultOptions: RequestOptions,
@@ -33,13 +36,18 @@ export function createHttpService(backend: ConnectionBackend,
     ReactiveFormsModule,
     SelectModule,
     ModalModule.forRoot(),
-    CommonListModule
+    CommonListModule,
+    NgxSelectModule
   ],
   declarations: [
                   WardListComponent, 
                   WardCreateComponent, 
                   SpecializationListComponent, 
-                  SpecializationCreateComponent],
+                  SpecializationCreateComponent,
+                  SpecializationPricePartialComponent,
+                  DoctorListComponent,
+                  DoctorCreateComponent
+                ],
   providers: [
     AuthenticationService,
     HttpCacheService,

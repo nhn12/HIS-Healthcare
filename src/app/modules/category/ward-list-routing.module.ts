@@ -1,3 +1,5 @@
+import { DoctorCreateComponent } from './pages/doctor/doctor-create.component';
+import { DoctorListComponent } from './pages/doctor/doctor-list.component';
 import { SpecializationCreateComponent } from './pages/specialization/specialization-create.component';
 import { SpecializationListComponent } from './pages/specialization/specialization-list.component';
 import { WardListComponent } from './pages/ward/ward-list.component';
@@ -13,6 +15,20 @@ const routes: Routes = [
       title: 'Danh mục'
     },
     children: [
+      {
+        path: "bac-si-list",
+        component: DoctorListComponent,
+        data: {
+          title:"Bác sĩ"
+        }
+      },
+      {
+        path: 'bac-si-create',
+        component: DoctorCreateComponent,
+        data: {
+          title: 'Tạo bác sĩ'
+        }
+      },
       {
         path: "phong-kham-list",
         component: WardListComponent,

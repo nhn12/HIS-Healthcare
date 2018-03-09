@@ -106,7 +106,7 @@ export const navigation = [
     children: [
       {
         name: 'Bác sĩ',
-        url: '/category/phong-kham-list',
+        url: '/category/bac-si-list',
         icon: 'icon-user'
       },
       {

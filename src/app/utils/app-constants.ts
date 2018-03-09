@@ -12,4 +12,6 @@ export const AppConstants =  {
 
      COMMON_MESSAGE_UPDATE_SUCCESS: 'Thông tin đã được cập nhật',
      COMMON_MESSAGE_UPDATE_FAILED: 'Quá trình cập nhật bị lỗi. Thử lại!',
+
+     EMPTY_MESSAGE: 'Dữ liệu rỗng'
 };

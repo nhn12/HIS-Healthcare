@@ -12,12 +12,12 @@ import { AppConstants } from 'app/utils/app-constants';
 import { CategoryService } from 'app/modules/category/services/category.service';
 
 @Component({
-  templateUrl: 'ward-list.component.html',
-  selector: "ward-list",
-  styleUrls: ['ward-list.component.scss'],
+  templateUrl: 'doctor-list.component.html',
+  selector: "doctor-list",
+  styleUrls: ['doctor-list.component.scss'],
   providers: [CategoryService]
 })
-export class WardListComponent implements OnInit {
+export class DoctorListComponent implements OnInit {
 
   mapTable: TableMappingDto[] = [];
   option: Option
@@ -26,9 +26,12 @@ export class WardListComponent implements OnInit {
 
   ngOnInit() {
     this.mapTable.push(new TableMappingDto('Tên', 'name'));
+    this.mapTable.push(new TableMappingDto('Giới tính', 'gender_name'));
+    this.mapTable.push(new TableMappingDto('Năm sinh', 'birthday', 'date'));
     this.mapTable.push(new TableMappingDto('Chuyên khoa', 'specialization_name'));
 
+
     this.option = new Option();
-    this.option.urlCreate = "/category/phong-kham-create";
+    this.option.urlCreate = "/category/bac-si-create";
   }
 }

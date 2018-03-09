@@ -84,6 +84,27 @@
     }
 }
 
+.row-selected {
+    background-color: rgba(0,0,0,.075);
+}
+
+.sort-container-icon {
+    float: right;
+    .sort-up-icon {
+        font-size: 10px;
+    }
+    
+    .sort-down-icon {
+        font-size: 10px;
+        margin-left: -4px;
+    }
+
+    .sort-unselect-icon {
+        color: #999;
+    }
+}
+
+
 //toaster
 .toast-container .toast:hover {
     -webkit-box-shadow: 0 0 4px #999;
