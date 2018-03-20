@@ -1,5 +1,9 @@
+import { NgxSelectModule } from 'ngx-select-ex';
+import { SelectModule } from 'ng2-select';
+import { ReceptionCreateComponent } from './../reception-create/reception-create.component';
+import { CommonListModule } from 'app/share-component/common-list-component/common-list-component.module';
 import { ShareComponentModule } from './../../../share-component/share-component.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonPaging } from './../../../core/condition/paging';
 import { CommonFilter } from './../../../core/condition/filter';
 import { NgModule, OnInit } from '@angular/core';
@@ -15,6 +19,7 @@ import { HttpModule, Http, XHRBackend, ConnectionBackend, RequestOptions } from 
 import { AuthenticationService } from 'app/core/authentication/authentication.services';
 import { CommonModule } from '@angular/common';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -25,9 +30,17 @@ export function createHttpService(backend: ConnectionBackend,
 
 @NgModule({
   imports: [
-    ReceptionListRoutingModule, HttpModule, FormsModule, CommonModule, ShareComponentModule, BsDatepickerModule.forRoot(),
+    ReceptionListRoutingModule, 
+    HttpModule, 
+    CommonListModule,  
+    FormsModule, 
+    NgxSelectModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    CommonModule, 
+    ShareComponentModule, BsDatepickerModule.forRoot(),
   ],
-  declarations: [ReceptionListComponent],
+  declarations: [ReceptionListComponent, ReceptionCreateComponent],
   providers: [
     AuthenticationService,
     HttpCacheService,

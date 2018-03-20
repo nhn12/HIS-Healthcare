@@ -91,7 +91,7 @@ export const navigation = [
   // },
   {
     name: 'Tiếp nhận',
-    url: '/reception',
+    url: '/reception/reception-list',
     icon: 'icon-pie-chart'
   },
   {

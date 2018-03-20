@@ -36,6 +36,7 @@
           <td *ngFor="let col of mapTable">
             <span *ngIf="col.type==undefined || col.type==null">{{item[col.col]}}</span>
             <span *ngIf="col.type=='date'">{{item[col.col] | date: dateFormat}}</span>
+            <span *ngIf="col.type=='icon'" class="col-icon" [innerHTML]="item[col.col + '_custom']"></span>
           </td>
           <td class="table-action-col" *ngIf="!option || option.isEdit == undefined || option.isEdit == null || option.isEdit == true">
             <i class="fa fa-edit" (click)="editItem(item)"></i>

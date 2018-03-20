@@ -14,7 +14,7 @@ import { ShareComponentModule } from 'app/share-component/share-component.module
 import { CategoryRoutingModule } from 'app/modules/category/ward-list-routing.module';
 import { WardListComponent } from 'app/modules/category/pages/ward/ward-list.component';
 import { WardCreateComponent } from 'app/modules/category/pages/ward/ward-create.component';
-import {SelectModule} from 'ng2-select';
+import { SelectModule } from 'ng2-select';
 import { CommonListModule } from 'app/share-component/common-list-component/common-list-component.module';
 import { SpecializationPricePartialComponent } from './pages/specialization/specialization-price-partial.component';
 import { NgxSelectModule } from 'ngx-select-ex';
@@ -28,10 +28,10 @@ export function createHttpService(backend: ConnectionBackend,
 
 @NgModule({
   imports: [
-    CategoryRoutingModule, 
-    HttpModule, FormsModule, 
-    CommonModule, 
-    ShareComponentModule, 
+    CategoryRoutingModule,
+    HttpModule, FormsModule,
+    CommonModule,
+    ShareComponentModule,
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     SelectModule,
@@ -40,14 +40,14 @@ export function createHttpService(backend: ConnectionBackend,
     NgxSelectModule
   ],
   declarations: [
-                  WardListComponent, 
-                  WardCreateComponent, 
-                  SpecializationListComponent, 
-                  SpecializationCreateComponent,
-                  SpecializationPricePartialComponent,
-                  DoctorListComponent,
-                  DoctorCreateComponent
-                ],
+    WardListComponent,
+    WardCreateComponent,
+    SpecializationListComponent,
+    SpecializationCreateComponent,
+    SpecializationPricePartialComponent,
+    DoctorListComponent,
+    DoctorCreateComponent
+  ],
   providers: [
     AuthenticationService,
     HttpCacheService,
@@ -55,7 +55,8 @@ export function createHttpService(backend: ConnectionBackend,
       provide: Http,
       deps: [XHRBackend, RequestOptions, HttpCacheService],
       useFactory: createHttpService
-    }]
+    }
+  ]
 })
 export class CategoryModule {
 

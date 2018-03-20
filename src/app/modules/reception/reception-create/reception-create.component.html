@@ -1,0 +1,119 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card">
+                <form [formGroup]="complexForm" (ngSubmit)="submit(complexForm.value)">
+                    <div class="card-header">
+                        <strong>Tiếp nhận mới</strong>
+                    </div>
+                    <div class="card-body">
+                        <strong>Thông tin hành chánh</strong>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="firstname">Họ</label>
+                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['firstname']">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Tên</label>
+                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['lastname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['lastname']">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="namsinh">Năm sinh</label>
+                                    <input type="number" [ngClass]="{'has-error':!complexForm.controls['namsinh'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['namsinh']">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Giới tính</label>
+                                    <ngx-select formControlName="gioitinh" [items]="listGender" placeholder=""></ngx-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Địa chỉ</label>
+                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['diachi'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['diachi']">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Tỉnh thành</label>
+                                    <ngx-select formControlName="matt" (ngModelChange)="changeTT()" [items]="listProvince" placeholder=""></ngx-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Quận huyện</label>
+                                    <ngx-select formControlName="maqh"  (ngModelChange)="changeQH()" [items]="listDistrict" placeholder=""></ngx-select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Phường xã</label>
+                                    <ngx-select formControlName="mapx" (ngModelChange)="changePX()" [items]="listCommune" placeholder=""></ngx-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Mã BHYT</label>
+                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['mabhyt'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['mabhyt']">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Ngày bắt đầu BHYT</label>
+                                    <input formControlName="nbdbhyt" class="form-control" bsDatepicker/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Hạn BHYT</label>
+                                    <input formControlName="hanbhyt" class="form-control" bsDatepicker/>
+                                </div>
+                            </div>
+                        </div>
+                        <strong>Thông tin khám bệnh</strong>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Chuyên khoa</label>
+                                    <input formControlName="mack" class="form-control" bsDatepicker/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Phòng khám</label>
+                                    <input formControlName="mapk" class="form-control" bsDatepicker/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" [disabled]="!complexForm.valid" class="btn btn-sm btn-success">
+                            <i class="fa fa-file-o"></i>
+                            <span>{{actionText}}</span>
+                        </button>
+                        <button (click)="cancel()" class="btn btn-sm btn-secondary">
+                            <i class="fa fa-eraser"></i> Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

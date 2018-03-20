@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonSort, CommonOrder, ORDER_TYPE } from 'app/core/condition/sort';
 import { PagingDto } from 'app/share-component/paging-index';
 import { Observable } from 'rxjs/Observable';
+import { TableMappingDto } from '../../category/services/data/table-mapping-dto';
+import { Option } from '../../../share-component/common-list-component/common-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'reception-list.component.html',
@@ -14,64 +17,39 @@ import { Observable } from 'rxjs/Observable';
   providers: [ReceptionListService]
 })
 export class ReceptionListComponent implements OnInit {
-  filter: CommonFilter;
-  paging: CommonPaging;
-  sort: CommonSort;
 
-  pagingOption: PagingDto = { totalRecords: 10, indexActive: 1 ,limit: AppConstants.DEFAULT_NUMBER_RECORD_PER_PAGE};
-
-  receptionList;
-
-  receptionListMaster: any[] = [];
-
-  maxDate: Date = (new Date());
-  bsValue: Date = (new Date());
-  constructor(private receptionService: ReceptionListService) {
+  mapTable: TableMappingDto[] = [];
+  option: Option
+  constructor(private route: Router) {
   }
 
   ngOnInit() {
-    this.paging = new CommonPaging(0, AppConstants.DEFAULT_NUMBER_RECORD_PER_PAGE);
-    this.sort = new CommonSort([new CommonOrder("namsinh", ORDER_TYPE.ASC)]);
-    this.getReceptions(this.filter, this.sort, this.paging, true);
+    this.mapTable.push(new TableMappingDto('Ngày T/Nhận', 'created_date', 'date'));
+    this.mapTable.push(new TableMappingDto('Tên', 'hoten'));
+    this.mapTable.push(new TableMappingDto('G/T', 'genderName'));
+    this.mapTable.push(new TableMappingDto('N/S', 'namsinh'));
+    this.mapTable.push(new TableMappingDto('Chuyên khoa', 'specialization_name'));
+    this.mapTable.push(new TableMappingDto('Phòng khám', 'ward_name'));
+    this.mapTable.push(new TableMappingDto('Số TT', 'stt'));
+    this.mapTable.push(new TableMappingDto('Thời gian khám', 'stt'));
+    this.mapTable.push(new TableMappingDto('Nguồn ĐK', 'channel', 'icon'));
+
+
+
+    this.option = new Option();
+    this.option.isDelete = false;
+    this.option.isEdit = false;
+    this.option.urlCreate = "/reception/reception-create";
+    this.option.urlEdit = "/reception/reception-create";
+    this.option.callbackData = (data)=>{return this.callbackSource(data)}
   }
 
-  changeIndex(index) {
-    this.paging.setPage(index.index);
-    this.pagingOption.indexActive = index.index;
-    this.getReceptions(this.filter, this.sort, this.paging, false);
-  }
-
-  changeDateReception() {
-    console.log("sdfsdfsd");
-  }
-
-
-  getReceptions(filter, sort, paging, isResetPaging: boolean, isLazyLoad?:boolean) {
-    let temp = this.receptionListMaster.filter(x=>x.index == this.pagingOption.indexActive);
-
-    if(temp.length > 0 && !isLazyLoad) {
-      console.log("use lazy loading");
-      this.receptionList = temp[0].data;
-      return;
+  callbackSource(data) {
+    if(data && data.channel) {
+      data['channel_custom'] = (data.channel == 'M'?'<i class="icon-screen-smartphone"></i>':'<i class="icon-home"></i>');
     }
 
-    let tempObs = this.receptionService.getList<any>(filter, sort, paging).map(value=>{
-      if(value) {
-        if(isResetPaging) {
-          this.pagingOption = { totalRecords: value.totalRecords, indexActive: 0, limit: AppConstants.DEFAULT_NUMBER_RECORD_PER_PAGE }
-        }
-        return value.results;
-      } 
-      return [];
-    });
+    return data;
 
-    if(!isLazyLoad) {
-      this.receptionList = tempObs;
-    } else {
-      tempObs.subscribe();
-      this.receptionListMaster.push({index: paging.getPage(), data: tempObs});
-    }
-
-    
   }
 }

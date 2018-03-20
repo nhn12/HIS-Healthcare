@@ -17,6 +17,7 @@ export class Option {
   public isEdit: boolean;
   public isDelete: boolean;
   public isAdd: boolean = true;
+  public callbackData: any;
 }
 
 @Component({
@@ -160,6 +161,12 @@ export class CommonListComponent implements OnInit {
             this.paging.downCount();
             this.getReceptions(this.filter, this.sort, this.paging, false);
             return null;
+          }
+        } else {
+          if(this.option.callbackData) {
+            value.results.forEach(element => {
+              element = this.option.callbackData(element)
+            });
           }
         }
         
