@@ -18,6 +18,8 @@ export abstract class CommonForm {
     isLoading: boolean = false;
 
     data: any = {};
+
+    controls: any;
     constructor(private _location: Location, public router: Router, public routeP: ActivatedRoute, public fb: FormBuilder) {
         this.initComponent();
     }
