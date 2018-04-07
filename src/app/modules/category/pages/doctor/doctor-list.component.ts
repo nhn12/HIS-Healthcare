@@ -26,6 +26,7 @@ export class DoctorListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mapTable.push(new TableMappingDto('Mã', 'code'));
     this.mapTable.push(new TableMappingDto('Tên', 'name'));
     this.mapTable.push(new TableMappingDto('Giới tính', 'gender_name'));
     this.mapTable.push(new TableMappingDto('Năm sinh', 'birthday', 'date'));

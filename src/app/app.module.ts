@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './core/authentication/authentication.services';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +11,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+
+
 
 
 // Import containers
@@ -75,6 +78,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { HttpCacheService } from 'app/core/http/http-cache.service';
 import { AuthenticationGuard } from 'app/core/authentication/authentication.guard';
 import { HttpService } from 'app/core/http/http.service';
+import { SocketService } from './modules/reception/service/socket-service';
 
 
 // export function createHttpService(backend: ConnectionBackend,
@@ -102,6 +106,7 @@ import { HttpService } from 'app/core/http/http.service';
     ...APP_DIRECTIVES
   ],
   providers: [AuthenticationGuard,
+    SocketService,
     AuthenticationService,
     // HttpCacheService,
     // {

@@ -1,3 +1,5 @@
+import { ConditionOperator } from 'app/core/condition/condition';
+import { DefaultCondition } from './../../core/condition/condition';
 import { ReceptionListService } from 'app/modules/reception/service/reception-list.service';
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CommonSort, CommonOrder, ORDER_TYPE, Order } from 'app/core/condition/sort';
@@ -104,6 +106,7 @@ export class CommonListComponent implements OnInit {
         this.receptionService.setResource(this.resource);
         this.paging = new CommonPaging(0, AppConstants.DEFAULT_NUMBER_RECORD_PER_PAGE);
         this.sort = new CommonSort([new CommonOrder("id", ORDER_TYPE.ASC)]);
+        this.initDefaultCondition();
         this.getReceptions(this.filter, this.sort, this.paging, true);
       }
 
@@ -126,6 +129,13 @@ export class CommonListComponent implements OnInit {
     }
 
     this.route.navigate([this.option.urlCreate], {queryParams: {data: JSON.stringify(item)}, replaceUrl: true });
+  }
+  
+  initDefaultCondition() {
+    let defaultCondition =  new DefaultCondition(ConditionOperator.EQ, "deleted_flag", false);
+    if(!this.filter) {
+      this.filter = new CommonFilter(defaultCondition);
+    }
   }
 
   deleteItem(data) {
@@ -163,13 +173,12 @@ export class CommonListComponent implements OnInit {
             return null;
           }
         } else {
-          if(this.option.callbackData) {
+          if(this.option && this.option.callbackData) {
             value.results.forEach(element => {
               element = this.option.callbackData(element)
             });
           }
         }
-        
         return value.results;
       }
       return [];

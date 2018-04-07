@@ -23,9 +23,8 @@ export class LoginComponent {
     this.loginService.login(tempUser).subscribe(result=>{
       setTimeout(()=>{
         this.isLoading = false;
-
-        this.router.navigate(['/dashboard'], { replaceUrl: true });
-      }, 3000)
+        location.href = location.origin;
+      }, 5000)
     }, error=>{
       this.isLoading = false;
     })

@@ -30,9 +30,9 @@
 
 // modal
 .modal-backdrop {
-    transition-duration: 0.2s;
+    transition-duration: 1s;
     background: rgba(120, 124, 139, 0.9);
-    transition: opacity 0.1s;
+    transition: opacity 1s;
 }
 .modal-backdrop.in{
     opacity: 1;
@@ -44,7 +44,21 @@
     animation-fill-mode: forwards;
     border-radius: 0;
 }
+
+// .modal .vertical-alignment-helper {
+//     display:table;
+//     height: 100%;
+//     width:100%;
+// }
+// .modal .vertical-align-center {
+//     /* To center vertically */
+//     display: table-cell;
+//     vertical-align: middle;
+// }
+
 .modal.fade.in .modal-content{
+    width:inherit;
+    height:inherit;
     -webkit-animation-name: anim-open;
     animation-name: anim-open;
     -webkit-animation-timing-function: cubic-bezier(0.6,0,0.4,1);

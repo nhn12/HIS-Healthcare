@@ -10,7 +10,7 @@ import { PagingDto } from 'app/share-component/paging-index';
 import { Observable } from 'rxjs/Observable';
 import { AppConstants } from 'app/utils/app-constants';
 import { CategoryService } from 'app/modules/category/services/category.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import to from '../../../../utils/promise-utils'
 import { WardDto } from 'app/modules/category/pages/ward/data/ward-dto';
 import { mapValueToField } from '../../../../utils/form-mapping';
@@ -36,6 +36,8 @@ export class DoctorCreateComponent extends CommonForm implements OnInit {
   mapTable: TableMappingDto[] = [];
 
   listGender: any[] = [];
+
+  public marskDate = [new RegExp('^[0-1]?[0-3]$'), new RegExp('^[0-1]?[0-9]$'), '/', new RegExp('^[0-1]?[0-1]$'), new RegExp('^[0-1]?[0-9]$'), '/', new RegExp('^[0-1]?[0-2]$'), new RegExp('^[0-1]?[0-9]$'), new RegExp('^[0-1]?[0-9]$'), new RegExp('^[0-1]?[0-9]$')];
   constructor(public location: Location, 
     public router: Router, 
     public routeP: ActivatedRoute, 
@@ -55,11 +57,16 @@ export class DoctorCreateComponent extends CommonForm implements OnInit {
       'id' : [null],
       'firstname' : [null, Validators.required],
       'lastname' : [null, Validators.required],
-      'birthday': [null, Validators.compose([Validators.required])],
+      'birthday': [null, Validators.compose([Validators.required, this.validateDate.bind]), ],
       'specialization_id': [],
       'specialization_name': [null, Validators.required],
       'gender': [null, Validators.required]
     })
+  }
+
+  validateDate(control: AbstractControl): { [key: string]: any } {
+    console.log(control);
+    return {};
   }
 
 

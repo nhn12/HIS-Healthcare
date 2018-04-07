@@ -46,8 +46,6 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
   }
 
   ngOnInit() {
-    //this.mapTable.push(new TableMappingDto('Tên', 'name'));
-    //this.categoryService.setResource("doctor_tbl");
     this.getGenderList();
     this.getProvinceList();
   }
@@ -145,7 +143,7 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
   async getCommuneList() {
     let filter;
     if(this.complexForm.controls['maqh'].value) {
-      filter = new CommonFilter(new DefaultCondition(ConditionOperator.EQ, 'district_code', this.complexForm.controls['matt'].value));
+      filter = new CommonFilter(new DefaultCondition(ConditionOperator.EQ, 'district_code', this.complexForm.controls['maqh'].value));
     }
     let [err, response] = await to<any>(this.categoryService.getList(filter , null, null, {resource: "commune_tbl"}).toPromise());
     if(response && response.results && response.results.length > 0) {

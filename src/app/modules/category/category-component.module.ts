@@ -19,6 +19,7 @@ import { CommonListModule } from 'app/share-component/common-list-component/comm
 import { SpecializationPricePartialComponent } from './pages/specialization/specialization-price-partial.component';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { DoctorListComponent } from './pages/doctor/doctor-list.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 export function createHttpService(backend: ConnectionBackend,
   defaultOptions: RequestOptions,
@@ -37,7 +38,8 @@ export function createHttpService(backend: ConnectionBackend,
     SelectModule,
     ModalModule.forRoot(),
     CommonListModule,
-    NgxSelectModule
+    NgxSelectModule,
+    TextMaskModule
   ],
   declarations: [
     WardListComponent,
