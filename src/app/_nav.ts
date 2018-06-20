@@ -1,6 +1,6 @@
-export const navigation = [
+export const navItems = [
   {
-    name: 'Home',
+    name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
     badge: {
@@ -12,177 +12,116 @@ export const navigation = [
     title: true,
     name: 'Nghiệp vụ'
   },
-  // {
-  //   name: 'Components',
-  //   url: '/components',
-  //   icon: 'icon-puzzle',
-  //   children: [
-  //     {
-  //       name: 'Buttons',
-  //       url: '/components/buttons',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Social Buttons',
-  //       url: '/components/social-buttons',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Cards',
-  //       url: '/components/cards',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Forms',
-  //       url: '/components/forms',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Modals',
-  //       url: '/components/modals',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Switches',
-  //       url: '/components/switches',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Tables',
-  //       url: '/components/tables',
-  //       icon: 'icon-puzzle'
-  //     },
-  //     {
-  //       name: 'Tabs',
-  //       url: '/components/tabs',
-  //       icon: 'icon-puzzle'
-  //     }
-  //   ]
-  //  },
-  // {
-  //   name: 'Icons',
-  //   url: '/icons',
-  //   icon: 'icon-star',
-  //   children: [
-  //     {
-  //       name: 'Font Awesome',
-  //       url: '/icons/font-awesome',
-  //       icon: 'icon-star',
-  //       badge: {
-  //         variant: 'secondary',
-  //         text: '4.7'
-  //       }
-  //     },
-  //     {
-  //       name: 'Simple Line Icons',
-  //       url: '/icons/simple-line-icons',
-  //       icon: 'icon-star'
-  //     }
-  //   ]
-  // },
-  // {
-  //   name: 'Widgets',
-  //   url: '/widgets',
-  //   icon: 'icon-calculator',
-  //   badge: {
-  //     variant: 'info',
-  //     text: 'NEW'
-  //   }
-  // },
   {
-    name: 'Tiếp nhận',
-    url: '/reception/reception-list',
-    icon: 'icon-pie-chart'
-  },
-  {
-    name: 'Báo cáo',
-    url: '/charts',
-    icon: 'icon-pie-chart'
-  },
-  {
-    name: 'Danh mục',
-    url: '/category',
-    icon: 'icon-layers',
-    children: [
-      {
-        name: 'Bác sĩ',
-        url: '/category/bac-si-list',
-        icon: 'icon-user'
-      },
-      {
-        name: 'Phòng khám',
-        url: '/category/phong-kham-list',
-        icon: 'icon-book-open'
-      },
-      {
-        name: 'Chuyên khoa',
-        url: '/category/chuyen-khoa-list',
-        icon: 'icon-grid'
-      }
-    ]
-  },
-  {
-    name: 'Tổ chức',
-    url: '/category',
-    icon: 'icon-flag',
-    children: [
-      // {
-      //   name: 'Quy hoạch giờ',
-      //   url: '/schedule/blueprint-schedule-create',
-      //   icon: 'icon-calendar'
-      // },
-      {
-        name: 'Quy hoạch PK',
-        url: '/schedule/blueprint-schedule-list',
-        icon: 'icon-notebook'
-      }
-    ]
-  },
-  {
-    divider: true
+    name: "Cấp cứu",
+    url: "/reception/reception-list",
+    icon: "icon-puzzle" 
   },
   {
     title: true,
-    name: 'Hệ thống',
+    name: 'Quản lí'
+  },
+  {
+    name: 'Danh mục',
+    icon: 'icon-notebook',
+    url: 'icd-category/views',
+    children: [
+      {
+        name: 'ICD',
+        url: '/icd-category/views',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Tiền căn',
+        url: '/tien-can-category/views',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Xử trí',
+        url: '/xu-tri-category/views',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: "Lí do khám bệnh",
+        url: "/reason-category/views",
+        icon: "icon-puzzle" 
+      },
+      {
+        name: "Các bộ phận",
+        url: "/cac-bo-phan-category/views",
+        icon: "icon-puzzle" 
+      },
+      {
+        name: "Tổng quát",
+        url: "/can-lam-sang-category/views",
+        icon: "icon-puzzle" 
+      }
+    ]
+  },
+  {
+    title: true,
+    name: 'Hệ thống'
   },
   {
     name: 'Cài đặt',
-    url: '/pages',
+    url: '/base',
     icon: 'icon-settings',
-    // children: [
-    //   {
-    //     name: 'Login',
-    //     url: '/pages/login',
-    //     icon: 'icon-star'
-    //   },
-    //   {
-    //     name: 'Register',
-    //     url: '/pages/register',
-    //     icon: 'icon-star'
-    //   },
-    //   {
-    //     name: 'Error 404',
-    //     url: '/pages/404',
-    //     icon: 'icon-star'
-    //   },
-    //   {
-    //     name: 'Error 500',
-    //     url: '/pages/500',
-    //     icon: 'icon-star'
-    //   }
-    // ]
-  },
-  // {
-  //   name: 'Download CoreUI',
-  //   url: 'http://coreui.io/angular/',
-  //   icon: 'icon-cloud-download',
-  //   class: 'mt-auto',
-  //   variant: 'success'
-  // },
-  // {
-  //   name: 'Try CoreUI PRO',
-  //   url: 'http://coreui.io/pro/angular/',
-  //   icon: 'icon-layers',
-  //   variant: 'danger'
-  // }
+    children: [
+      {
+        name: 'Cards',
+        url: '/base/cards',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Carousels',
+        url: '/base/carousels',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Collapses',
+        url: '/base/collapses',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Forms',
+        url: '/base/forms',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Pagination',
+        url: '/base/paginations',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Popovers',
+        url: '/base/popovers',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Progress',
+        url: '/base/progress',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Switches',
+        url: '/base/switches',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Tables',
+        url: '/base/tables',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Tabs',
+        url: '/base/tabs',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Tooltips',
+        url: '/base/tooltips',
+        icon: 'icon-puzzle'
+      }
+    ]
+  }
 ];

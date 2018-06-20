@@ -1,0 +1,21 @@
+<div>
+  <h6>Các bộ phận</h6>
+  <hr>
+  <div class="row form-group">
+    <ng-container *ngFor="let item of tiencans|async">
+    <div class="col-4 center-container" >
+      <div class="form-check checkbox center-item">
+        <input class="form-check-input" type="checkbox" value=""  [(ngModel)]="item.checked">
+        <label class="form-check-label">
+          {{item.name}}
+        </label>
+      </div>
+    </div>
+    <div class="col-8" *ngIf="item.checked">
+      <div class="">
+        <textarea  fz-elastic placeholder="Mô tả bất thường {{item.name}}" class="form-control"></textarea>
+      </div>
+    </div>
+  </ng-container>
+  </div>
+</div>

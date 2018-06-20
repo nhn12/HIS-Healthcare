@@ -17,6 +17,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { BlueprintScheduleListComponent } from 'app/modules/schedule/pages/blueprint-schedule-list/blueprint-schedule-list.component';
 import { LaddaModule } from 'angular2-ladda';
 import { ScheduleListComponent } from './pages/schedule-list/schedule-list.component';
+import { ElasticModule } from 'angular2-elastic';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -38,6 +39,7 @@ export function createHttpService(backend: ConnectionBackend,
     ScheduleRoutingModule,
     TextMaskModule,
     CommonListModule,
+    ElasticModule,
     LaddaModule.forRoot({
       style: "expand-left",
     })

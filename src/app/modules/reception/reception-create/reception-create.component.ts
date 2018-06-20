@@ -1,21 +1,15 @@
 import { Location } from '@angular/common';
-import { TableMappingDto } from 'app/modules/category/services/data/table-mapping-dto';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ReceptionListService } from 'app/modules/reception/service/reception-list.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { CommonSort, CommonOrder, ORDER_TYPE } from 'app/core/condition/sort';
-import { PagingDto } from 'app/share-component/paging-index';
-import { Observable } from 'rxjs/Observable';
-import { AppConstants } from 'app/utils/app-constants';
-import { CategoryService } from 'app/modules/category/services/category.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { WardDto } from 'app/modules/category/pages/ward/data/ward-dto';
 import { CommonForm } from '../../../core/common-form/common-form';
 import { CommonService } from '../../../core/common-services/common-service';
 import { DefaultCondition, ConditionOperator } from '../../../core/condition/condition';
 import to from '../../../utils/promise-utils';
 import { CommonFilter } from '../../../core/condition/filter';
+import { CategoryService } from '../../category/services/category.service';
+import { TableMappingDto } from '../../category/services/data/table-mapping-dto';
 
 
 declare var jQuery:any;
@@ -37,6 +31,8 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
   listProvince: any[] = [];
   listDistrict: any[] = [];
   listCommune: any[] = [];
+  reasonList: any[] = [];
+  tiencanList: any[] = [];
   constructor(public location: Location, 
     public router: Router, 
     public routeP: ActivatedRoute, 
@@ -48,6 +44,8 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
   ngOnInit() {
     this.getGenderList();
     this.getProvinceList();
+    this.getReasonList();
+    this.getTienCanList();
   }
 
   public initFormBuilder() {
@@ -133,6 +131,28 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
     let [err, response] = await to<any>(this.categoryService.getList(filter, null, null, {resource: "district_tbl"}).toPromise());
     if(response && response.results && response.results.length > 0) {
       this.listDistrict = response.results.map(value=>{
+        value.id = value.code;
+        value.text = value.name;
+        return value;
+      })
+    }
+  }
+
+  async getReasonList() {
+    let [err, response] = await to<any>(this.categoryService.getList(new CommonFilter(new DefaultCondition(ConditionOperator.EQ, "deleted_flag", false)), null, null, {resource: "reasoncategory_tbl"}).toPromise());
+    if(response && response.results && response.results.length > 0) {
+      this.reasonList = response.results.map(value=>{
+        value.id = value.code;
+        value.text = value.name;
+        return value;
+      })
+    }
+  }
+
+  async getTienCanList() {
+    let [err, response] = await to<any>(this.categoryService.getList(new CommonFilter(new DefaultCondition(ConditionOperator.EQ, "deleted_flag", false)), null, null, {resource: "tiencancategory_tbl"}).toPromise());
+    if(response && response.results && response.results.length > 0) {
+      this.tiencanList = response.results.map(value=>{
         value.id = value.code;
         value.text = value.name;
         return value;

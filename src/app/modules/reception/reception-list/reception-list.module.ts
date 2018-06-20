@@ -20,6 +20,14 @@ import { AuthenticationService } from 'app/core/authentication/authentication.se
 import { CommonModule } from '@angular/common';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ElasticModule } from 'angular2-elastic';
+import { TongQuatPublicModule } from '../../managment/tong-quat-category/tong-quat-public-form/tong-quat-public-form.module';
+import { ChuanDoanPublicFormModule } from '../../managment/icd-category/chuan-doan-public-form/chuan-doan-public-form.module';
+import { ReasonPublicFormModule } from '../../managment/reason-category/reason-public-form/reason-public-form.module';
+import { DiseasePublicFormModule } from '../../managment/disease-history-category/disease-public-form/disease-public-form.module';
+import { TienCanPublicFormModule } from '../../managment/tien-can-category/tien-can-public-form/tien-can-public-form.module';
+import { CacBoPhanPublicFormModule } from '../../managment/cac-bo-phan-category/cac-bo-phan-public-form/cac-bo-phan-public-form.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -31,13 +39,21 @@ export function createHttpService(backend: ConnectionBackend,
 @NgModule({
   imports: [
     ReceptionListRoutingModule, 
+    ElasticModule,
     HttpModule, 
     CommonListModule,  
     FormsModule, 
     NgxSelectModule,
     ReactiveFormsModule,
+    TabsModule,
     ModalModule.forRoot(),
     CommonModule, 
+    TongQuatPublicModule,
+    ChuanDoanPublicFormModule,
+    ReasonPublicFormModule,
+    DiseasePublicFormModule,
+    TienCanPublicFormModule,
+    CacBoPhanPublicFormModule,
     ShareComponentModule, BsDatepickerModule.forRoot(),
   ],
   declarations: [ReceptionListComponent, ReceptionCreateComponent],
@@ -51,10 +67,7 @@ export function createHttpService(backend: ConnectionBackend,
     }]
 })
 export class ReceptionListModule {
-
-
   constructor() {
+
   }
-
-
 }

@@ -1,8 +1,8 @@
-import { CommonService } from "app/core/common-services/common-service";
-import { Filter } from "app/core/condition/filter";
-import { Sort } from "app/core/condition/sort";
-import { Paging } from "app/core/condition/paging";
 import { Injectable } from "@angular/core";
+import { CommonService } from "../../../core/common-services/common-service";
+import { Filter } from "../../../core/condition/filter";
+import { Sort } from "../../../core/condition/sort";
+import { Paging } from "../../../core/condition/paging";
 
 @Injectable()
 export class CategoryService extends CommonService {

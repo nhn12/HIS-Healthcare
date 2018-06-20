@@ -1,0 +1,21 @@
+<div>
+  <h6>Lí do</h6>
+  <hr>
+  <div class="row  form-group">
+    <div class="col-5" *ngFor="let item of reasons|async">
+      <div class="form-check checkbox">
+        <input class="form-check-input" type="checkbox" value="">
+        <label class="form-check-label">
+          {{item.name}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <textarea placeholder="Mô tả" fz-elastic class="form-control" id="name"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

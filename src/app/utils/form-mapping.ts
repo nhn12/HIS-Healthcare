@@ -12,7 +12,7 @@ export function mapValueToField(value: any, form: FormGroup, createFormItem?: an
     }
 
     for (var item in value) {
-        if ((typeof value[item]) == 'object' && value[item].length != undefined) {
+        if ((typeof value[item]) == 'object' && value[item] && value[item].length != undefined) {
             // case array;
             if (form.contains(item)) {
                 value[item].forEach((element, index) => {

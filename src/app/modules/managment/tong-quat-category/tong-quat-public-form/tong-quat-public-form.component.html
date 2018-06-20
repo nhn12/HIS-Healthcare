@@ -1,0 +1,36 @@
+<h6>Tổng trạng</h6>
+<hr>
+<div class="row">
+  <div class="col-sm-12" *ngFor="let item of dataList">
+    <div class="form-inline form-group">
+      <label style="width: 20%; justify-content: flex-start;" for="name">{{item.name}}
+        <span style="color: red" *ngIf="item.required">&nbsp;*</span>
+      </label>
+      <ng-container [ngSwitch]="item.type">
+        <ng-container *ngSwitchCase="'input_number'">
+          <ng-container *ngFor="let field of item.number_field_array; let i = index"><span *ngIf="item.number_field_array.length > 0 && i!=(item.number_field_array.length -1)">/</span>
+            <input type="number" class="form-control">
+          </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'input_text'">
+          <ng-container *ngFor="let field of item.number_field_array; let i = index">
+            <input type="text" class="form-control"><span *ngIf="item.number_field_array.length > 0 && i!=(item.number_field_array.length -1)">/</span>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'datetime'">
+          <ng-container *ngFor="let field of item.number_field_array; let i = index">
+            <input type="text" [textMask]="{mask: mask}" class="form-control"><span *ngIf="item.number_field_array.length > 0 && i!=(item.number_field_array.length -1)">/</span>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <label for="name">{{item.unit}}</label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="form-group">
+      <textarea placeholder="Mô tả" fz-elastic class="form-control" id="name"></textarea>
+    </div>
+  </div>
+</div>

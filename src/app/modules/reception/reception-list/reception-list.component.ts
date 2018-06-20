@@ -1,4 +1,4 @@
-import { SocketService } from './../service/socket-service';
+// import { SocketService } from './../service/socket-service';
 import { AppConstants } from './../../../utils/app-constants';
 import { ReceptionListService } from 'app/modules/reception/service/reception-list.service';
 import { CommonPaging } from './../../../core/condition/paging';
@@ -22,33 +22,31 @@ export class ReceptionListComponent implements OnInit {
 
   mapTable: TableMappingDto[] = [];
   option: Option
-  constructor(private route: Router, public socketService: SocketService) {
+  constructor(private route: Router) {
   }
 
   ngOnInit() {
-    this.mapTable.push(new TableMappingDto('Ngày T/Nhận', 'created_date', 'date'));
+    this.mapTable.push(new TableMappingDto('Ngày giờ', 'created_date', 'date'));
     this.mapTable.push(new TableMappingDto('Tên', 'hoten'));
     this.mapTable.push(new TableMappingDto('G/T', 'genderName'));
     this.mapTable.push(new TableMappingDto('N/S', 'namsinh'));
-    this.mapTable.push(new TableMappingDto('Chuyên khoa', 'specialization_name'));
-    this.mapTable.push(new TableMappingDto('Phòng khám', 'ward_name'));
-    this.mapTable.push(new TableMappingDto('Số TT', 'stt'));
+    this.mapTable.push(new TableMappingDto('ICD', 'specialization_name'));
+    this.mapTable.push(new TableMappingDto('Chuẩn đoán', 'ward_name'));
     this.mapTable.push(new TableMappingDto('Thời gian khám', 'stt'));
-    this.mapTable.push(new TableMappingDto('Nguồn ĐK', 'channel', 'icon'));
 
 
 
     this.option = new Option();
-    this.option.isDelete = false;
-    this.option.isEdit = false;
+    this.option.isDelete = true;
+    this.option.isEdit = true;
     this.option.urlCreate = "/reception/reception-create";
     this.option.urlEdit = "/reception/reception-create";
     this.option.callbackData = (data)=>{return this.callbackSource(data)}
 
 
-    this.socketService.subscibeMessage("message", (data)=>{
-      data.data
-    })
+    // this.socketService.subscibeMessage("message", (data)=>{
+    //   data.data
+    // })
   }
 
   callbackSource(data) {
