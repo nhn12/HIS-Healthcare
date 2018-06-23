@@ -11,6 +11,8 @@ import { AuthenticationService } from '../../../../core/authentication/authentic
 import { NgxSelectModule } from 'ngx-select-ex';
 import { ChuanDoanPublicFormComponent } from './chuan-doan-public-form.component';
 import { ElasticModule } from 'angular2-elastic';
+import { SearchTypingBoxComponent } from '../../../../share-component/search-typing-box/search-typing-box.component';
+import { SearchTypingBoxModule } from '../../../../share-component/search-typing-box/search-typing-box-component.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -29,7 +31,8 @@ export function createHttpService(backend: ConnectionBackend,
     NgxSelectModule,
     ElasticModule,
     CommonModule, 
-    ShareComponentModule
+    ShareComponentModule,
+    SearchTypingBoxModule
   ],
   declarations: [ChuanDoanPublicFormComponent],
   exports: [ChuanDoanPublicFormComponent],
