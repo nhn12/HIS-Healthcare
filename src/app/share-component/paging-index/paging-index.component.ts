@@ -12,7 +12,12 @@ export class PagingDto {
 })
 export class PagingIndexComponent implements OnInit {
   @Input() optionPaging: PagingDto;
-  indexList: any[] = []
+  indexList: any[] = [];
+  indexLimit: any[] = [];
+
+  totalItems: number = 0;
+  currentPage: number = 1;
+  previousPage: number = 1;
 
   private LIMIT_PAGE_INDEX: number = 4;
 
@@ -24,7 +29,6 @@ export class PagingIndexComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("Change it");
     this.convertToIndexList();
   }
 
@@ -32,21 +36,17 @@ export class PagingIndexComponent implements OnInit {
     if (!this.optionPaging) {
       this.indexList = [];
     }
+    this.totalItems = this.optionPaging.totalRecords;
+    this.currentPage = this.optionPaging.indexActive + 1;
+  }
 
-    this.indexList = [];
+  changeItem() {
+    // if(this.currentPage == this.previousPage) {
+    //   return;
+    // }
 
-    let countIndex = 0;
-    let startIndex = 0;
-    if (this.optionPaging.indexActive > 1) {
-      startIndex = this.optionPaging.indexActive;
-    }
-
-    for (var i = startIndex; i < this.optionPaging.totalRecords / this.optionPaging.limit; i++) {
-      // if (++countIndex > this.LIMIT_PAGE_INDEX) {
-      //   return;
-      // }
-      this.indexList.push({ index: i, active: this.optionPaging.indexActive == i ? true : false });
-    }
+    this.previousPage = this.currentPage;
+    this.indexUpdate.emit({ index: this.currentPage - 1 });
   }
 
   changeIndex(index) {
@@ -62,6 +62,12 @@ export class PagingIndexComponent implements OnInit {
         element.active = false;
       }
     })
+  }
+
+  detectLimitView() {
+    if(this.indexList.length < this.LIMIT_PAGE_INDEX) {
+      return;
+    }
   }
 
   next() {

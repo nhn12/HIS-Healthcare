@@ -4,6 +4,7 @@ import { PagingIndexComponent } from 'app/share-component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonListComponent } from 'app/share-component/common-list-component/common-list.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({

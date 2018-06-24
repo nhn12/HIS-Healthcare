@@ -1,11 +1,19 @@
 <div class="form-group">
+    <ul class="list-group">
+        <li style="padding:6px" class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of listSelected">
+            {{item.code}} - {{item.name}}
+            <i class="fa fa-close" style="color: #c60000" (click)="removeItem(item.code)"></i>
+        </li>
+    </ul>
+</div>
+<div class="form-group">
     <div class="input-group">
-        <input type="text" class="form-control">
-        <input type="text" readonly="true" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="codeTyping" (keyup)="changeCode($event)">
+        <input type="text" readonly="true" class="form-control"  value="{{nameShow.name}}">
         <div class="input-group-append">
             <span class="input-group-text">
                 <i class="cui-options icons"></i>
             </span>
-          </div>
+        </div>
     </div>
 </div>

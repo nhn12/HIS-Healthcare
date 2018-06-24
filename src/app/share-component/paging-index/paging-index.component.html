@@ -1,5 +1,8 @@
-<ul class="pagination">
+<!-- <ul class="pagination">
   <li class="page-item"><a class="page-link" (click)="prev()">Prev</a></li>
   <li class="page-item"  *ngFor="let item of indexList" [ngClass]="item.active?'active':''" (click)="changeIndex(item.index)"><a class="page-link">{{item.index + 1}}</a></li>
   <li class="page-item"><a class="page-link" (click)="next()">Next</a></li>
-</ul>
+</ul> -->
+<div>
+  <ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changeItem()"></ngb-pagination>
+</div>
