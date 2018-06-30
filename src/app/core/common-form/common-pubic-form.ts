@@ -2,10 +2,10 @@ import { Input, SimpleChanges } from "@angular/core";
 import { CheckboxOptions } from "../../share-component/check-box-component/check-box-component.component";
 
 export abstract class CommonPublicForm {
-    protected description: string;
-    protected dataList: any[] = [];
-    protected resource: string;
-    protected optional: CheckboxOptions;
+    public description: string;
+    public dataList: any[] = [];
+    public resource: string;
+    public optional: CheckboxOptions;
 
     @Input() callbackSubmit;
     @Input() data;
