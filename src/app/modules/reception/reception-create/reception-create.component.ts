@@ -85,7 +85,7 @@ export class ReceptionCreateComponent extends CommonForm implements OnInit {
     this.categoryService.setResource("registration_tbl");
     let [err,response] = await to<any>(this.categoryService.getList(new CommonFilter(new DefaultCondition(ConditionOperator.EQ, 'benhan_number', code)), null, null).toPromise());
     if(err) {
-      return Promise.reject();
+      return Promise.reject(err);
     }
 
     this.benhan = response.results[0];
