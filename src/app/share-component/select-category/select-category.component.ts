@@ -117,8 +117,8 @@ export class SelectCategoryComponent implements OnInit, ControlValueAccessor, On
 
   }
 
-  changeItem(item) {
-    this.onChange(item);
+  changeItem() {
+    this.onChange(this.modelList);
   }
 
 
