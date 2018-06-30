@@ -28,6 +28,9 @@ import { ReasonPublicFormModule } from '../../managment/reason-category/reason-p
 import { DiseasePublicFormModule } from '../../managment/disease-history-category/disease-public-form/disease-public-form.module';
 import { TienCanPublicFormModule } from '../../managment/tien-can-category/tien-can-public-form/tien-can-public-form.module';
 import { CacBoPhanPublicFormModule } from '../../managment/cac-bo-phan-category/cac-bo-phan-public-form/cac-bo-phan-public-form.module';
+import { TextMaskModule } from 'angular2-text-mask';
+import { CheckBoxComponentModule } from '../../../share-component/check-box-component/check-box-component.module';
+import { SelectCategoryModule } from '../../../share-component/select-category/select-category.component.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -54,6 +57,9 @@ export function createHttpService(backend: ConnectionBackend,
     DiseasePublicFormModule,
     TienCanPublicFormModule,
     CacBoPhanPublicFormModule,
+    TextMaskModule,
+    CheckBoxComponentModule,
+    SelectCategoryModule,
     ShareComponentModule, BsDatepickerModule.forRoot(),
   ],
   declarations: [ReceptionListComponent, ReceptionCreateComponent],

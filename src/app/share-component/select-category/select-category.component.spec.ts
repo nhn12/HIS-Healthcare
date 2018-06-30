@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TienCanPublicFormComponent } from './tien-can-public-form.component';
+import { SelectCategoryComponent } from './select-category.component';
 
-describe('TienCanPublicFormComponent', () => {
-  let component: TienCanPublicFormComponent;
-  let fixture: ComponentFixture<TienCanPublicFormComponent>;
+describe('SelectCategoryComponent', () => {
+  let component: SelectCategoryComponent;
+  let fixture: ComponentFixture<SelectCategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TienCanPublicFormComponent ]
+      declarations: [ SelectCategoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TienCanPublicFormComponent);
+    fixture = TestBed.createComponent(SelectCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

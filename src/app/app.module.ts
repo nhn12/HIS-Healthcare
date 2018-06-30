@@ -99,7 +99,6 @@ export function createHttpService(backend: ConnectionBackend,
     deps: [XHRBackend, RequestOptions, HttpCacheService],
     useFactory: createHttpService
   },
-    // SocketService,
     AuthenticationGuard,
     AuthenticationService],
   bootstrap: [AppComponent]

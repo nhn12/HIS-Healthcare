@@ -19,6 +19,7 @@ export class Option {
   public isDelete: boolean;
   public isAdd: boolean = true;
   public callbackData: any;
+  public overrideEdit: any;
 }
 
 @Component({
@@ -124,6 +125,11 @@ export class CommonListComponent implements OnInit {
 
   editItem(item) {
     if(!this.option && !this.option.urlCreate) {
+      return;
+    }
+
+    if(this.option && this.option.overrideEdit) {
+      this.option.overrideEdit(item);
       return;
     }
 

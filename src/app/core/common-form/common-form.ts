@@ -13,7 +13,7 @@ export abstract class CommonForm {
     _service: any;
 
     complexForm: FormGroup;
-    mode: string; //mode component
+    public mode: string; //mode component
 
     isLoading: boolean = false;
 
@@ -104,7 +104,10 @@ export abstract class CommonForm {
                     resolve(undefined);
                     return;
                 }
-
+                if(!result.data) {
+                    resolve(null);
+                    return;
+                }
                 let data = JSON.parse(result.data);
                 parseObject(data, this.setMappingData());
                 resolve(data);

@@ -4,6 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { CategoryService } from '../../../category/services/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-icd-creation-form',

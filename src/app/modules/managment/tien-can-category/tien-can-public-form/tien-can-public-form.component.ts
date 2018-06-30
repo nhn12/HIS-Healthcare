@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { CategoryService } from '../../../category/services/category.service';
 import { Observable } from 'rxjs';
 import { CommonFilter } from '../../../../core/condition/filter';
 import { DefaultCondition, ConditionOperator } from '../../../../core/condition/condition';
+import { CommonPublicForm } from '../../../../core/common-form/common-pubic-form';
 
 @Component({
   selector: 'app-tien-can-public-form',
   templateUrl: './tien-can-public-form.component.html',
   styleUrls: ['./tien-can-public-form.component.scss']
 })
-export class TienCanPublicFormComponent implements OnInit {
-
+export class TienCanPublicFormComponent extends CommonPublicForm implements OnInit, OnChanges {
   tiencans: Observable<any>
-  constructor(public categoryService: CategoryService) { }
+  constructor(public categoryService: CategoryService) { 
+    super();
+   }
 
   ngOnInit() {
-    this.categoryService.setResource("tiencancategory_tbl");
-    this.tiencans = this.categoryService.getList<any>(new CommonFilter(new DefaultCondition(ConditionOperator.EQ, 'deleted_flag', false)), null, null).map(result=>{
-      return result.results;
-    });
+    this.initComponent();
+  }
+
+  protected registerResource() {
+    return "tiencancategory_tbl";
+  }
+  protected registerOptional() {
+    return null;
   }
 
 }

@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../../../core/authentication/authentic
 import { NgxSelectModule } from 'ngx-select-ex';
 import { DiseasePublicFormComponent } from './disease-public-form.component';
 import { ElasticModule } from 'angular2-elastic';
+import { CheckBoxComponentModule } from '../../../../share-component/check-box-component/check-box-component.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -29,7 +30,8 @@ export function createHttpService(backend: ConnectionBackend,
     NgxSelectModule,
     CommonModule, 
     ShareComponentModule,
-    ElasticModule
+    ElasticModule,
+    CheckBoxComponentModule
   ],
   declarations: [DiseasePublicFormComponent],
   exports: [DiseasePublicFormComponent],

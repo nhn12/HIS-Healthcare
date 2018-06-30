@@ -12,6 +12,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { CategoryService } from '../../../category/services/category.service';
 import { TienCanPublicFormComponent } from './tien-can-public-form.component';
 import { ElasticModule } from 'angular2-elastic';
+import { CheckBoxComponentModule } from '../../../../share-component/check-box-component/check-box-component.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -30,7 +31,8 @@ export function createHttpService(backend: ConnectionBackend,
     NgxSelectModule,
     CommonModule, 
     ShareComponentModule,
-    ElasticModule
+    ElasticModule,
+    CheckBoxComponentModule
   ],
   declarations: [TienCanPublicFormComponent],
   exports: [TienCanPublicFormComponent],

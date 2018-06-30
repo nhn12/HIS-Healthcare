@@ -5,7 +5,7 @@ export abstract class Condition {
 }
 
 export enum ConditionOperator {
-    LIKE,EQ, LT, LTE, GT, GTE, IN, OR, AND, BETWEEN
+    LIKE,EQ, LT, LTE, GT, GTE, IN, OR, AND, BETWEEN, NIN
 }
 
 export class DefaultCondition extends Condition {
@@ -41,6 +41,9 @@ export class DefaultCondition extends Condition {
                 break;
             case ConditionOperator.IN:
                 operator = "$in"
+                break;
+            case ConditionOperator.NIN: 
+                operator = '$nin'
                 break;
         }
 

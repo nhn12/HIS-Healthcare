@@ -27,14 +27,12 @@ export class ReceptionListComponent implements OnInit {
 
   ngOnInit() {
     this.mapTable.push(new TableMappingDto('Ngày giờ', 'created_date', 'date'));
-    this.mapTable.push(new TableMappingDto('Tên', 'hoten'));
+    this.mapTable.push(new TableMappingDto('Mã BA', 'benhan_number'));
+    this.mapTable.push(new TableMappingDto('Tên', 'name'));
     this.mapTable.push(new TableMappingDto('G/T', 'genderName'));
-    this.mapTable.push(new TableMappingDto('N/S', 'namsinh'));
+    this.mapTable.push(new TableMappingDto('N/S', 'birthday_year'));
     this.mapTable.push(new TableMappingDto('ICD', 'specialization_name'));
-    this.mapTable.push(new TableMappingDto('Chuẩn đoán', 'ward_name'));
-    this.mapTable.push(new TableMappingDto('Thời gian khám', 'stt'));
-
-
+    this.mapTable.push(new TableMappingDto('Chuẩn đoán', 'chandoan_des'));
 
     this.option = new Option();
     this.option.isDelete = true;
@@ -43,15 +41,19 @@ export class ReceptionListComponent implements OnInit {
     this.option.urlEdit = "/reception/reception-create";
     this.option.callbackData = (data)=>{return this.callbackSource(data)}
 
-
-    // this.socketService.subscibeMessage("message", (data)=>{
-    //   data.data
-    // })
+    this.option.overrideEdit = (item)=>{
+      this.route.navigate([this.option.urlCreate], {queryParams: {code: item.benhan_number}, replaceUrl: true });
+    }
   }
 
   callbackSource(data) {
     if(data && data.channel) {
       data['channel_custom'] = (data.channel == 'M'?'<i class="icon-screen-smartphone"></i>':'<i class="icon-home"></i>');
+    }
+
+    console.log(data.chandoan);
+    if(data && data.chandoan) {
+      data['chandoan_des'] = data.chandoan.description;
     }
 
     return data;

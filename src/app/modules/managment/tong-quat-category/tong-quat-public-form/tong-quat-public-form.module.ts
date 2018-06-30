@@ -14,6 +14,7 @@ import { TongQuatPublicFormComponent } from './tong-quat-public-form.component';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ElasticModule } from 'angular2-elastic';
+import { CheckBoxComponentModule } from '../../../../share-component/check-box-component/check-box-component.module';
 
 
 export function createHttpService(backend: ConnectionBackend,
@@ -34,7 +35,8 @@ export function createHttpService(backend: ConnectionBackend,
     CommonModule, 
     ElasticModule,
     BsDatepickerModule.forRoot(),
-        ShareComponentModule
+        ShareComponentModule,
+    CheckBoxComponentModule
   ],
   declarations: [TongQuatPublicFormComponent],
   exports: [TongQuatPublicFormComponent],

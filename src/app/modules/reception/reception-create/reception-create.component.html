@@ -1,165 +1,131 @@
-<!-- <div class="animated fadeIn">
+<div class="animated fadeIn create-form">
     <div class="row">
         <div class="col-sm-8">
-            <div class="card">
-                <form [formGroup]="complexForm" (ngSubmit)="submit(complexForm.value)">
-                    <div class="card-header">
-                        <strong>Thông tin hành chánh</strong>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="firstname">Họ</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['firstname']">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Tên</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['lastname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['lastname']">
-                                </div>
-                            </div>
+            <tabset>
+                <tab heading="Thông tin">
+                    <h6>Thông tin bệnh nhân</h6>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label>Họ tên bệnh nhân</label>
+                            <input class="form-control" [(ngModel)]="benhan.name" />
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="namsinh">Năm sinh</label>
-                                    <input type="number" [ngClass]="{'has-error':!complexForm.controls['namsinh'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['namsinh']">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Giới tính</label>
-                                    <ngx-select formControlName="gioitinh" [items]="listGender" placeholder=""></ngx-select>
-                                </div>
-                            </div>
+                        <div class="col-3 form-group">
+                            <label>Năm sinh</label>
+                            <input type="number" class="form-control" [(ngModel)]="benhan.birthday_year" />
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Địa chỉ</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['diachi'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['diachi']">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Tỉnh thành</label>
-                                    <ngx-select formControlName="matt" (ngModelChange)="changeTT()" [items]="listProvince" placeholder=""></ngx-select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Quận huyện</label>
-                                    <ngx-select formControlName="maqh" (ngModelChange)="changeQH()" [items]="listDistrict" placeholder=""></ngx-select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Phường xã</label>
-                                    <ngx-select formControlName="mapx" (ngModelChange)="changePX()" [items]="listCommune" placeholder=""></ngx-select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Mã BHYT</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['mabhyt'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['mabhyt']">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Ngày bắt đầu BHYT</label>
-                                    <input formControlName="nbdbhyt" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Hạn BHYT</label>
-                                    <input formControlName="hanbhyt" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                        <strong>Thông tin khám bệnh</strong>
-                        <hr>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Chuyên khoa</label>
-                                    <input formControlName="mack" class="form-control" bsDatepicker/>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Phòng khám</label>
-                                    <input formControlName="mapk" class="form-control" bsDatepicker/>
-                                </div>
-                            </div>
+                        <div class="col-3 form-group">
+                            <label>Giới tính</label>
+                            <app-check-box-component class="center-checkbox" [resource]="'type_tbl GENDER_TYPE'" [(ngModel)]="benhan.gender" [optional]="{single: true, col: 6}"></app-check-box-component>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" [disabled]="!complexForm.valid" class="btn btn-sm btn-success">
-                            <i class="fa fa-file-o"></i>
-                            <span>{{actionText}}</span>
-                        </button>
-                        <button (click)="cancel()" class="btn btn-sm btn-secondary">
-                            <i class="fa fa-eraser"></i> Hủy</button>
+                    <div class="row">
+                        <div class="col-4 form-group">
+                            <label>Dân tộc</label>
+                            <app-select-component [resource]="'type_tbl DANTOC'" [(ngModel)]="benhan.dantoc"></app-select-component>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label>Quốc tịch</label>
+                            <app-select-component [resource]="'type_tbl NATIONALITY'" [(ngModel)]="benhan.nationality"></app-select-component>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label>Nghề nghiệp</label>
+                            <app-select-component [resource]="'type_tbl JOB_TYPE'" [(ngModel)]="benhan.nghe_nghiep"></app-select-component>
+                        </div>
                     </div>
-                </form>
-            </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Địa chỉ cấp cứu</label>
+                            <input class="form-control" [(ngModel)]="benhan.address_cc" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Địa chỉ thường trú</label>
+                            <input class="form-control" [(ngModel)]="benhan.address_tt" />
+                        </div>
+                    </div>
+                    <h6>Thông tin người gọi cấp cứu</h6>
+                    <hr>
+                    <div class="row">
+                        <div class="col-8 form-group">
+                            <label>Người gọi</label>
+                            <input class="form-control" [(ngModel)]="benhan.name_ref" />
+                        </div>
+                        <div class="col-4 form-group">
+                            <label>Điện thoại</label>
+                            <input type="number" class="form-control" [(ngModel)]="benhan.phone_ref" />
+                        </div>
+                    </div>
+                    <h6>Thông tin cấp cứu</h6>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Lí do gọi cấp cứu</label>
+                            <textarea fz-elastic class="form-control" [(ngModel)]="benhan.reason_cc"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Thời gian gọi</label>
+                            <input class="form-control" [textMask]="{mask: maskTime, alias: 'datetime'}" [(ngModel)]="benhan.time_cc" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Đối tượng</label>
+                            <app-check-box-component class="center-checkbox" [resource]="'type_tbl PATIENT_TYPE'" [(ngModel)]="benhan.patient_type" [optional]="{single: true, col: 3}"></app-check-box-component>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Sơ lược bệnh nhân">
+                    <app-reason-public-form [data]="benhan.reason"></app-reason-public-form>
+                    <app-disease-public-form [data]="benhan.disease"></app-disease-public-form>
+                    <app-tien-can-public-form [data]="benhan.tiencan"></app-tien-can-public-form>
+                    <tong-quat-public-form [data]="benhan.tongquat"></tong-quat-public-form>
+                    <app-cac-bo-phan-public-form [data]="benhan.cacbophan"></app-cac-bo-phan-public-form>
+                    <app-chuan-doan-public-form [data]="benhan.chandoan"></app-chuan-doan-public-form>
+                </tab>
+            </tabset>
         </div>
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">
-                    <strong>Thông tin bệnh án</strong>
+                    <span>Thông tin bệnh án</span>
                 </div>
                 <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="firstname">Số bệnh án</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['firstname']">
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Số bệnh án</label>
+                            <input class="form-control" [(ngModel)]="benhan.benhan_number" [readonly]="true" />
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="firstname">Số chuyển bệnh</label>
-                                    <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" [formControl]="complexForm.controls['firstname']">
-                                </div>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Số chuyển viện</label>
+                            <input class="form-control" [(ngModel)]="benhan.chuyenvien_number" [readonly]="true" />
                         </div>
-                    </form>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Thời gian</label>
+                            <input class="form-control" [textMask]="{mask: maskTime, alias: 'datetime'}" [(ngModel)]="benhan.datetime" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" (click)="cancel()" class="btn btn-block btn-secondary">Hủy</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" (click)="save()" class="btn btn-block btn-success">Lưu</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div> -->
 
-<div class="animated fadeIn">
-    <div class="row">
 
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-header">
-                    <span>Tình trạng bệnh nhân</span>
-                </div>
-                <div class="card-body">
-                    <app-reason-public-form></app-reason-public-form>
-                    <app-disease-public-form></app-disease-public-form>
-                    <app-tien-can-public-form></app-tien-can-public-form>                 
-                    <tong-quat-public-form></tong-quat-public-form>
-                    <app-cac-bo-phan-public-form></app-cac-bo-phan-public-form>
-                    <app-chuan-doan-public-form></app-chuan-doan-public-form>
-                </div>
-            </div>
         </div>
 
     </div>
+</div>

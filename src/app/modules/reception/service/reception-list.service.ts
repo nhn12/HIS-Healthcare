@@ -1,7 +1,9 @@
-import { CommonService } from "app/core/common-services/common-service";
 import { Filter } from "app/core/condition/filter";
 import { Sort } from "app/core/condition/sort";
 import { Paging } from "app/core/condition/paging";
+import { CommonService } from "../../../core/common-services/common-service";
+import { to } from "../../../utils/promise-utils";
+import { RequestOptions } from "@angular/http";
 
 export class ReceptionListService extends CommonService {
     protected getUrlForList(): string {
@@ -11,7 +13,7 @@ export class ReceptionListService extends CommonService {
         throw new Error("Method not implemented.");
     }
     protected getUrlForAdd(): string {
-        throw new Error("Method not implemented.");
+        return "registration/insert"
     }
     protected getUrlForUpdate(): string {
         throw new Error("Method not implemented.");
@@ -34,8 +36,8 @@ export class ReceptionListService extends CommonService {
 
         return obj;
     }
-    protected getBodyRequestForInsert() {
-        throw new Error("Method not implemented.");
+    protected getBodyRequestForInsert(data) {
+        return data;
     }
     protected getBodyRequestForUpdate() {
         throw new Error("Method not implemented.");
@@ -46,5 +48,25 @@ export class ReceptionListService extends CommonService {
 
     private getResource() {
         return "registration_tbl";
+    }
+
+    public async  getBaNumber(): Promise<string> {
+        let [err, response] = await to<any>(this.http.get("registration/getBANumber", new RequestOptions({ headers: this.buildAuthentication() })).toPromise());
+        if(err || !response) {
+            return "ERROR_UNKOWN";
+        }
+
+        response = response.json();
+        return response.data;
+    }
+
+    public async  getCvNumber(): Promise<string> {
+        let [err, response] = await to<any>(this.http.get("registration/getCVNumber", new RequestOptions({ headers: this.buildAuthentication() })).toPromise());
+        if(err || !response) {
+            return "ERROR_UNKOWN";
+        }
+
+        response = response.json();
+        return response.data;
     }
 }

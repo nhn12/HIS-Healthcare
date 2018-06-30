@@ -9,8 +9,8 @@
 <div class="form-group">
     <div class="input-group">
         <input type="text" class="form-control" [(ngModel)]="codeTyping" (keyup)="changeCode($event)">
-        <input type="text" readonly="true" class="form-control"  value="{{nameShow.name}}">
-        <div class="input-group-append">
+        <input type="text" readonly="true" class="form-control"  value="{{nameShow?.name}}">
+        <div class="input-group-append" (click)="openICDList()">
             <span class="input-group-text">
                 <i class="cui-options icons"></i>
             </span>
