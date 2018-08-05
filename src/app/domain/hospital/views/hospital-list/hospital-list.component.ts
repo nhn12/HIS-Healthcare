@@ -65,7 +65,7 @@ export class HospitalListComponent extends BaseDataListComponent<HospitalListMod
         throw new Error('Method not implemented.');
     }
 
-    add() {
+    add(e) {
         this.router.navigate(['hospital/create'], { replaceUrl: true });
     }
 }

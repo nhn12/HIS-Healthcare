@@ -24,10 +24,10 @@ export class CommonMessagePopupComponent implements OnInit {
   @Input() payload: any;
   @Input() option: MessageOption;
 
-  private typeClass;
-  private iconBackground;
-  private titleDefault;
-  private contentDefault;
+  public typeClass;
+  public iconBackground;
+  public titleDefault;
+  public contentDefault;
   constructor(private bsModalRef: BsModalRef, private messageUtils: MessageUtils) {
 
   }
@@ -77,7 +77,7 @@ export class CommonMessagePopupComponent implements OnInit {
   }
 
 
-  onCloseClick() {
+  onCloseClick($e) {
     // Callback payload if it exist
     if (this.payload) {
       this.payload();

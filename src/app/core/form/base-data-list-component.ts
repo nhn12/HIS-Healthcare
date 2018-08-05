@@ -23,7 +23,7 @@ export abstract class BaseDataListComponent<T> implements IDataListComponent<T> 
     protected sort: CommonSort;
 
     // component state
-    private _loadingState: boolean;
+    public _loadingState: boolean;
     private _errorState: boolean;
 
     public async refreshData(): EnterprisePromise<boolean> {
@@ -67,11 +67,11 @@ export abstract class BaseDataListComponent<T> implements IDataListComponent<T> 
     public abstract async importData();
 
     
-    protected get loadingState(): boolean {
+    public get loadingState(): boolean {
         return this._loadingState;
     }
 
-    protected set loadingState(value: boolean) {
+    public set loadingState(value: boolean) {
         this._loadingState = value;
     }
 

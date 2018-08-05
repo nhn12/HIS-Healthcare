@@ -18,7 +18,7 @@ export class HospitalCreateComponent implements OnInit {
 
     private hospital: HospitalDetailModel = new HospitalDetailModel();
     public hospitalForm: FormGroup;
-    private image: string[] = [];
+    public image: string[] = [];
     constructor(private formBuilder: FormBuilder, private hospitalService: HospitalService, private router: Router) { }
 
     ngOnInit() {

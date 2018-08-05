@@ -30,6 +30,8 @@ export class CommonDataTableComponent implements OnInit {
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
 
+  isLoading: boolean = false;
+
   pagingQuery: CommonPaging = null;
   sortQuery: CommonSort = null;
   filterQuery: CommonFiler = null;

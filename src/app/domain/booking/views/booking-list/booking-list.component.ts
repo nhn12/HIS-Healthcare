@@ -23,7 +23,7 @@ export class BookingListComponent implements OnInit {
 	option: Optional = new Optional();
 
 	private socket: SocketIOClient.Socket;
-	private eventsSubject: Subject<void> = new Subject<void>();
+	public eventsSubject: Subject<void> = new Subject<void>();
 
 	constructor(private route: Router) {
 

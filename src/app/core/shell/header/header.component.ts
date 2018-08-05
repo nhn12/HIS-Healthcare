@@ -11,6 +11,8 @@ import { AuthenticationService } from '../../authentication/authentication.servi
 export class HeaderComponent implements OnInit {
 
   menuHidden = true;
+  currentLanguage = null;
+  languages = null;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService) { }
