@@ -63,7 +63,9 @@ export class CommonDataTableComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.eventsSubscription.unsubscribe();
+    if(this.eventsSubscription) {
+      this.eventsSubscription.unsubscribe();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
