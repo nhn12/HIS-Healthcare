@@ -1,0 +1,17 @@
+hospital-create{
+    .hospital-create {
+        .hospital-avartar {
+          border-radius: 3px;
+          background-color: #f8f8f8;
+          border-radius: var(--common-radius);
+          border: #d0d0d0 dashed 1px;
+          font-family: sans-serif;
+          position: relative;
+          color: #9b9b9b;
+      
+          .img-ul-clear {
+              display: none;
+            }
+        }
+      }
+}

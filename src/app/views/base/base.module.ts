@@ -1,3 +1,5 @@
+import { CommonMessagePopupCModule } from '../../containers/common-message/common-message.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 // Angular
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -58,7 +60,9 @@ import { BaseRoutingModule } from './base-routing.module';
     PaginationModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
+    
   ],
   declarations: [
     CardsComponent,

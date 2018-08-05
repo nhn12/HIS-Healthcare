@@ -1,0 +1,15 @@
+<div class="modal-header header-modal-error {{typeClass}}" [ngClass]="typeClass==true?typeClass:''">
+  <div style="width: 100%;">
+    <h4 class="modal-title pull-left">{{titleDefault}}</h4>
+    <div class="background-error">
+      <i style="font-size: 180px;" class="fa {{iconBackground}}"></i>
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" style="color: #fff; opacity: 1;" (click)="onCloseClick($event)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <p style="margin-top: 35px">{{contentDefault}}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default {{typeClass}}" (click)="onCloseClick($event)" style="color:#fff">OK</button>
+</div>

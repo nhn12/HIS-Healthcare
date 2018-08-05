@@ -1,0 +1,74 @@
+<div class="animated fadeIn hospital-list">
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-1">
+          <div class="button-group">
+            <button type="button" class="btn btn-success" (click)="add($event)">
+              <i class="fa fa-plus-circle"></i>&nbsp; Thêm</button>
+          </div>
+        </div>
+      
+      </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Danh sách bệnh viện</strong>
+        </div>
+        <div class="card-body remove-padding">
+          <div>
+            <div class="list-group" *ngIf="(hospitalList&&hospitalList.length>0)||loadingState;else empty">
+              <div *ngFor="let item of hospitalList" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="row">
+                  <div class="col-1 avarta-container">
+                    <a class="circle">
+                      <img src="{{item.image}}" alt="Cloud Chen">
+                    </a>
+                  </div>
+                  <div class="col-10">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">
+                        <span>{{item.code}} - </span> {{item.name}}</h5>
+                      <small>
+                        <!-- <span class="badge badge-success badge-pill">Active</span> -->
+                      </small>
+                    </div>
+                    <p class="mb-1">{{item.address}}
+                      <span>. SĐT: {{item.phone}}</span>
+                    </p>
+                    <small class="">
+                      <div class="row">
+                        <div class="col-6">
+                          <a href="/#/specialization/list">Chuyên khoa: {{item.specialization.length}}</a>
+                        </div>
+                        <div class="col-6">
+                          <a href="/#/ward/list">Phòng khám: {{item.ward.length}}</a>
+                        </div>
+                      </div>
+
+
+                    </small>
+                  </div>
+                  <div class="col-1 action-button">
+                    <button type="button" class="btn btn-block btn-outline-danger" disabled="">
+                      <i class="fa fa-ban fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #empty>
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-action flex-column">
+                        <div class="alert alert-warning" role="alert" text-center>
+                            Chưa có dữ liệu.
+                          </div>
+                    </div>
+                </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+</div>

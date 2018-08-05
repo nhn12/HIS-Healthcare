@@ -1,4 +1,5 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
+// NamNguyen: Project ignore e2e/unit test. It will setup later
 
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';

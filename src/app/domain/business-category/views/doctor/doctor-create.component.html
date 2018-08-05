@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <form [formGroup]="complexForm" (ngSubmit)="submit(complexForm.value)">
+          <div class="card-header">
+            <strong>Thông tin phòng khám</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="name">Họ </label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid}" class="form-control" id="name" formControlName="firstname">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="name">Tên </label>
+                  <input type="text" [ngClass]="{'has-error':!complexForm.controls['lastname'].valid}" class="form-control" id="name" formControlName="lastname">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Giới tính</label>
+                  <ng-select formControlName="gender" [items]="listGender" bindLabel="text" bindValue="id" placeholder=""></ng-select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Ngày sinh</label>
+                  <input formControlName="birthday" class="form-control" [textMask]="{mask: marskDate}" />
+                </div>
+              </div>
+            </div>
+            <!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="ccnumber">Chuyên khoa</label>
+                  <ng-select formControlName="specialization_id" [items]="listSpecialization" bindLabel="text" bindValue="id" placeholder=""></ng-select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" [disabled]="!complexForm.valid" class="btn btn-sm btn-success">
+              <i class="fa fa-file-o"></i>
+              <span>{{actionText}}</span>
+            </button>
+            <button (click)="cancel()" class="btn btn-sm btn-secondary">
+              <i class="fa fa-eraser"></i> Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="animated fadeIn hospital-create">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-header">
+          <strong>Tạo </strong>
+          <small>Bệnh viện</small>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="hospitalForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-sm-4" formGroupName="account">
+                <div class="form-row">
+                  <div class="form-group">
+                    <image-upload [class]="'hospital-avartar'" [max]="1" buttonCaption="Chọn ảnh" dropBoxMessage="Kéo thả ảnh vào" [uploadedFiles]="image"
+                      (uploadFinished)="onUploadFinished($event)"></image-upload>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Tên đăng nhập</label>
+                    <input type="text" class="form-control" formControlName="username">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Mật khẩu</label>
+                    <input type="password" class="form-control" formControlName="password">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Tên</label>
+                    <input type="email" formControlName="name" class="form-control" formControlName="name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Địa chỉ</label>
+                  <textarea type="text" fz-elastic class="form-control" formControlName="address"></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress2">Số điện thoại</label>
+                    <input type="number" class="form-control" formControlName="phone">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress2">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 submit-action">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa fa-check"></i>&nbsp;Lưu</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
