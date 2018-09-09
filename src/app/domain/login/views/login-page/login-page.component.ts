@@ -17,6 +17,9 @@ export class LoginPageComponent implements OnInit {
     isLoading = false;
     isError = false;
     userModel: UserModel = new UserModel();
+
+    messageDefault:string = 'Tên đăng nhập hoặc mật khẩu chưa đúng.';
+    messageError: string = 'Tên đăng nhập hoặc mật khẩu chưa đúng.';
     constructor(private userService: UserService,
         private router: Router,
         private configService: LocalConfigService) {
@@ -36,6 +39,11 @@ export class LoginPageComponent implements OnInit {
 
         if (err) {
             this.isError = true;
+            if(err && err.errorMessage && (<any>err.errorMessage).message) {
+                this.messageError = (<any>err.errorMessage).message;
+            } else {
+                this.messageError = this.messageDefault;
+            }
             return;
         }
 

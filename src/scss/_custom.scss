@@ -4,6 +4,14 @@
   border: 0px;
 }
 
+.pr-5 {
+  padding-right: 5px !important;
+}
+
+.pl-5 {
+  padding-left: 5px !important;
+}
+
 // Hospial create 
 .hospital-create {
   .hospital-avartar {
@@ -16,22 +24,34 @@
     position: relative;
     color: #9b9b9b;
     .img-ul-upload {
-        color: #fff;
-        background-color: #20a8d8;
-        border-color: #20a8d8;
-        border-radius: 0.25rem;
-        font-size: 0.875rem;
+      color: #fff;
+      background-color: #20a8d8;
+      border-color: #20a8d8;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
     }
     .img-ul-clear {
       display: none;
     }
   }
-
+  .avartar-padding {
+    .img-ul-file-upload {
+      padding: 50px;
+    }
+  }
+  .ng-select-container {
+    border: 1px solid #e4e7ea !important;
+  }
+  .avartar-padding-remove {
+    .img-ul-file-upload {
+      padding: 0px;
+    }
+  }
   .submit-action {
-      display: flex;
-      button {
-        margin-left: auto;
-      }
+    display: flex;
+    button {
+      margin-left: auto;
+    }
   }
 }
 
@@ -41,7 +61,7 @@
   width: 10px;
   color: #AAAAAA;
   i:hover {
-      color: #dc2a2a;
+    color: #dc2a2a;
   }
 }
 
@@ -53,21 +73,24 @@
 }
 
 .row-selected {
-  background-color: rgba(0,0,0,.075);
+  background-color: rgba(0, 0, 0, .075);
 }
 
 .sort-container-icon {
   float: right;
   .sort-up-icon {
-      font-size: 10px;
+    font-size: 10px;
   }
-  
   .sort-down-icon {
-      font-size: 10px;
-      margin-left: -4px;
+    font-size: 10px;
+    margin-left: -4px;
   }
-
   .sort-unselect-icon {
-      color: #999;
+    color: #999;
   }
+}
+
+// form
+.form-title {
+  padding-bottom: 10px;
 }

@@ -8,6 +8,7 @@ import { reject } from 'q';
 import { EnterprisePromise } from '../../../core/async/enterprise-promise';
 import { TechnicalExceptionObject } from '../../../core/exception/technical-exception-object';
 import { MessageConst } from '../../../variable-defination/message/message';
+import { HttpOptional } from '../../../core/http/model/optional';
 
 /**
  * @author NamNguyen
@@ -24,7 +25,9 @@ export class UserService {
     }
 
     public async login(userModel: UserModel): EnterprisePromise<UserModel> {
-        let [error, response] = await this.httpService.insert<UserModel>("staff-account/login", userModel, null).await();
+        let httpOptional = new HttpOptional();
+        httpOptional.disableToast = true;
+        let [error, response] = await this.httpService.insert<UserModel>("staff-account/login", userModel, httpOptional).await();
 
         if(error) {
             return EnterprisePromise.reject(error);

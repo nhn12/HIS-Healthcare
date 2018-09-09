@@ -26,7 +26,6 @@ export class HospitalService {
         if (error) {
             return EnterprisePromise.reject(error);
         }
-
         return response;
     }
 
@@ -35,8 +34,19 @@ export class HospitalService {
         if(error) {
             return EnterprisePromise.reject(error);
         }
-
         return response;
+    }
+
+    public async delete(id: string) {
+        let [error, response] = await this.httpService.deleteOne("hospital/delete", id,  null).await();
+        if(error) {
+            return EnterprisePromise.reject(error);
+        }
+        return response;
+    }
+
+    public getHttpClient(): HttpService {
+        return this.httpService;
     }
 
 

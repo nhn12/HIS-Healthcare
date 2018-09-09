@@ -1,22 +1,19 @@
 export class BlueprintScheduleModel {
-    public ward_id: number;
-    public ward_name: string;
-    public specialization_id: number;
-    public specialization_name: string;
-    public hospital_id: number;
-
-
     public id: Number;
-    public start_time: Date;
-    public end_time: Date;
+    public start_time: String;
+    public end_time: String;
     public doctor_id: Number;
+    public specialization_id: Number;
+    public hospital_id: number;
     public period: Number;
+
+    public time: {ward_id: number, start_time: string, end_time: string}[];
 
     public has_sync: {type: Boolean; default: false};
 
     //audit tbl
     public created_by: String;
     public created_date: Date;
-    public updated_date: Date;
-    public deleted_flag: Date; 
+    public updated_date: Number;
+    public deleted_flag: Boolean;
 }

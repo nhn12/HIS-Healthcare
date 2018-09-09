@@ -1,9 +1,8 @@
 import { LocalConfigService } from './local-config/local-config-service';
-import { CommonMessagePopupCModule } from '../containers/common-message/common-message.module';
 import { MessageUtils } from './message/message-util';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +18,7 @@ import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
 import { HttpModule } from '@angular/http';
+import { ComponentEngine } from './form/form-engine';
 
 @NgModule({
   imports: [
@@ -41,6 +41,7 @@ import { HttpModule } from '@angular/http';
     HttpCacheService,
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
+    ComponentEngine,
     CacheInterceptor,
     {
       provide: HttpClient,

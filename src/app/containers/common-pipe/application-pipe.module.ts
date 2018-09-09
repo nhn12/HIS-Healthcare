@@ -1,5 +1,7 @@
+import { NotificationTimePipe } from './time-pipe';
 import { NgModule } from '@angular/core';
 import { MessagePipe } from "./message-pipe";
+import { DatePipe } from '@angular/common';
 
 // other imports
 
@@ -8,11 +10,14 @@ import { MessagePipe } from "./message-pipe";
         // dep modules
     ],
     declarations: [
-        MessagePipe
+        MessagePipe,
+        NotificationTimePipe
     ],
     exports: [
-        MessagePipe
-    ]
+        MessagePipe,
+        NotificationTimePipe
+    ],
+    providers:[DatePipe]
 })
 export class ApplicationPipesModule {
 }

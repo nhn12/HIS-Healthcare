@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 /**
  * @author NamNguyen
  * @email nhn12.hoangnam@gmail.com
@@ -15,24 +16,22 @@ import { Filter } from '../http-query/filter/filter';
 import { Sort } from '../http-query/sort/sort';
 import { Paging } from '../http-query/paging/paging';
 import { CommonPaging } from '../http-query/paging/common-paging';
+import { BaseComponent } from './base-component';
 
-export abstract class BaseDataListComponent<T> implements IDataListComponent<T> {
+export abstract class BaseDataListComponent<T>  extends BaseComponent implements IDataListComponent<T> {
     protected dataList: T[] = [];
     protected paging: CommonPaging;
     protected filter: CommonFiler;
     protected sort: CommonSort;
 
-    // component state
-    public _loadingState: boolean;
-    private _errorState: boolean;
-
     public async refreshData(): EnterprisePromise<boolean> {
-        let tempData: T[] = [];
         if(this.paging) {
             this.paging.resetPaging();
         }
 
+        this.isLoading = true;
         let[error, response] = await this.getListData(this.filter, this.sort, this.paging).await();
+        this.isLoading = false;
 
         if(error || !response) {
             // TODO
@@ -68,18 +67,22 @@ export abstract class BaseDataListComponent<T> implements IDataListComponent<T> 
 
     
     public get loadingState(): boolean {
-        return this._loadingState;
+        return this.isLoading;
     }
 
     public set loadingState(value: boolean) {
-        this._loadingState = value;
+        this.isLoading = value;
     }
 
     protected get errorState(): boolean {
-        return this._errorState;
+        return this.hasError;
     }
 
     protected set errorState(value: boolean) {
-        this._errorState = value;
+        this.hasError = value;
+    }
+
+    constructor(protected injector: Injector) {
+        super();
     }
 }

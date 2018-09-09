@@ -7,5 +7,7 @@ export class HospitalListModel {
     public email: string;
     public image: string;
 
+    public status: boolean;
+
     public updated_date: Date;
 }

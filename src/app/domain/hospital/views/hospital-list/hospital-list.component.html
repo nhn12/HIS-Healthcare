@@ -1,71 +1,100 @@
 <div class="animated fadeIn hospital-list">
-    <div class="row" style="margin-bottom:10px">
-        <div class="col-md-1">
-          <div class="button-group">
-            <button type="button" class="btn btn-success" (click)="add($event)">
-              <i class="fa fa-plus-circle"></i>&nbsp; Thêm</button>
-          </div>
-        </div>
-      
+  <div class="row" style="margin-bottom:10px">
+    <div class="col-md-1">
+      <div class="button-group">
+        <button type="button" class="btn btn-success" (click)="add($event)">
+          <i class="fa fa-plus-circle"></i>&nbsp; Thêm</button>
       </div>
+    </div>
+
+  </div>
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
           <strong>Danh sách bệnh viện</strong>
+          <div class="card-header-actions" (click)="refreshData()">
+            <a class="card-header-action" target="_blank">
+              <small class="text-muted">
+                <i class="fa fa-refresh fa-lg"></i>
+              </small>
+            </a>
+          </div>
         </div>
         <div class="card-body remove-padding">
-          <div>
-            <div class="list-group" *ngIf="(hospitalList&&hospitalList.length>0)||loadingState;else empty">
-              <div *ngFor="let item of hospitalList" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="row">
-                  <div class="col-1 avarta-container">
-                    <a class="circle">
-                      <img src="{{item.image}}" alt="Cloud Chen">
-                    </a>
-                  </div>
-                  <div class="col-10">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">
-                        <span>{{item.code}} - </span> {{item.name}}</h5>
-                      <small>
-                        <!-- <span class="badge badge-success badge-pill">Active</span> -->
-                      </small>
+          <table class="table table-responsive-sm table-hover table-outline mb-0" *ngIf="(dataList&&dataList.length>0)||loadingState;else empty">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center">
+                  <i class="icon-people"></i>
+                </th>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>Loại bênh viện</th>
+                <th class="text-center">Trạng thái</th>
+                <th>Lần cuối truy cập</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="isLoading">
+                <td colspan="7">
+                  <spinner></spinner>
+                </td>
+              </tr>
+              <ng-container *ngIf="!isLoading">
+                <tr *ngFor="let item of dataList">
+                  <td class="text-center">
+                    <div class="avatar">
+                      <img src="{{item.image}}" class="img-avatar">
                     </div>
-                    <p class="mb-1">{{item.address}}
-                      <span>. SĐT: {{item.phone}}</span>
-                    </p>
-                    <small class="">
-                      <div class="row">
-                        <div class="col-6">
-                          <a href="/#/specialization/list">Chuyên khoa: {{item.specialization.length}}</a>
-                        </div>
-                        <div class="col-6">
-                          <a href="/#/ward/list">Phòng khám: {{item.ward.length}}</a>
-                        </div>
+                  </td>
+                  <td>
+                    <div><span>{{item.code}} - </span> {{item.name}}</div>
+                    <div class="small text-muted">
+                      <span>New</span> | Ngày bắt đầu: {{item.created_date | date: DATE_FORMAT }}
+                    </div>
+                  </td>
+                  <td>
+                    <div><span>{{item.address}}</span></div>
+                    <div class="small text-muted">
+                      <span>{{item.phone}}</span> <span *ngIf="item.email&&item.phone">|</span> {{item.email}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="clearfix">
+                      <div class="float-left">
+                        <span *ngIf="item.hospital_type_obj.length > 0">{{item.hospital_type_obj[0].name}}</span>
                       </div>
-
-
-                    </small>
-                  </div>
-                  <div class="col-1 action-button">
-                    <button type="button" class="btn btn-block btn-outline-danger" disabled="">
-                      <i class="fa fa-ban fa-lg"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <ng-template #empty>
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-action flex-column">
-                        <div class="alert alert-warning" role="alert" text-center>
-                            Chưa có dữ liệu.
-                          </div>
                     </div>
-                </div>
-            </ng-template>
-          </div>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge badge-success" *ngIf="item.status == 1">Kích hoạt</span>
+                    <span class="badge badge-danger" *ngIf="item.status == 0">Hủy kích hoạt</span>
+                  </td>
+                  <td>
+                    <div class="small text-muted">Last login</div>
+                    <strong>{{item.last_visit|notificationTime}}</strong>
+                  </td>
+                  <td>
+                    <div class="btn-group float-right" dropdown>
+                      <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+                        <i class="icon-options-vertical icons action-icon" style="color:black"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                        <a class="dropdown-item" href="#">Cập nhật thông tin</a>
+                        <a class="dropdown-item" (click)="changeStatus(item.id, !item.status)">
+                          <span *ngIf="item.status == 1">Hủy kích hoạt</span>
+                          <span *ngIf="item.status == 0">Kích hoạt</span>
+                        </a>
+                        <a class="dropdown-item" (click)="delete(item.id)">Xóa</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

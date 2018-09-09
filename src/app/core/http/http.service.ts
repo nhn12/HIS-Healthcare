@@ -257,13 +257,20 @@ export class HttpService extends HttpClient {
         actionStatus = " thành công";
         if (response && response.error && response.error.status != '200') {
             if (response.error && response.error.message && response.error.message.messageCode) {
-                messageContent = MessageConst[response.error.message.messageCode];
+                messageContent = null;
+                if(MessageConst[response.error.message.messageCode]) {
+                    messageContent = MessageConst[response.error.message.messageCode];
+                } else if(response.error.message.message) {
+                    messageContent = response.error.message.message;
+                }
+
+                
             }
             actionStatus = " thất bại";
             messageLevel = MessageLevel.ERROR;
         }
 
-        this.messageService.showMessage(MessageType.TOAST, messageLevel, new MessageOption(null, actionString + actionStatus));
+        this.messageService.showMessage(MessageType.TOAST, messageLevel, new MessageOption(actionString + actionStatus, messageContent));
 
     }
 

@@ -2,7 +2,7 @@ import { DefaultCondition } from '../../../../core/http-query/condition/default-
 import { HospitalListModel } from '../../model/hospital-list-model';
 import { ListModel } from '../../../../core/http-service/model/list-model';
 import { EnterprisePromise } from '../../../../core/async/enterprise-promise';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { BaseDataListComponent } from '../../../../core/form/base-data-list-component';
 import { Filter } from '../../../../core/http-query/filter/filter';
 import { Sort, HttpOrder, OrderType } from '../../../../core/http-query/sort/sort';
@@ -27,14 +27,17 @@ import { Router } from '@angular/router';
 export class HospitalListComponent extends BaseDataListComponent<HospitalListModel> implements OnInit {
     
 
-    hospitalList: HospitalListModel[] = [];
-    constructor(private hospitalService: HospitalService, private router: Router) { 
-        super();
+    // hospitalList: HospitalListModel[] = [];
+    DATE_FORMAT: string = AppConstants.DATE_FORMAT;
+    constructor(protected injector: Injector, private hospitalService: HospitalService, private router: Router) { 
+        super(injector);
     }
 
     async ngOnInit() {
         this.prepareGetData();
-        this.hospitalList = await this.getListData(this.filter, this.sort, this.paging);
+        this.isLoading = true;
+        this.dataList = await this.getListData(this.filter, this.sort, this.paging);
+        this.isLoading = false;
      }
 
     public initPagingComponent(totalRecord: number) {
@@ -67,5 +70,17 @@ export class HospitalListComponent extends BaseDataListComponent<HospitalListMod
 
     add(e) {
         this.router.navigate(['hospital/create'], { replaceUrl: true });
+    }
+
+    async changeStatus(id: number, status: boolean) {
+        let [error, response] = await this.hospitalService.getHttpClient().update('hospital/update', { id: id, status: status }, null).await();
+        if(response) {
+            this.dataList.filter(x=>x.id == id)[0].status = status;
+        }
+    }
+
+    async delete(id:string) {
+        await this.hospitalService.delete(id);
+        this.refreshData();
     }
 }

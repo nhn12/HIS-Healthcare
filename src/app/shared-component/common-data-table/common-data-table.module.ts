@@ -1,3 +1,4 @@
+import { ComponentUtil } from './../component-util.module';
 import { ApplicationPipesModule } from '../../containers/common-pipe/application-pipe.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonDataTableComponent } from './common-data-table.component';
@@ -10,7 +11,8 @@ import { NgModule } from '@angular/core';
   imports: [
     CommonModule,
     ApplicationPipesModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ComponentUtil
   ],
   declarations: [
     CommonDataTableComponent

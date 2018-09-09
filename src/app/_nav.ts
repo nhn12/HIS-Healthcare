@@ -17,11 +17,11 @@ export const navItems = [
     url: '/schedule/blueprint/list',
     icon: 'icon-speedometer'
   },
-  {
-    name: 'Thông tin quy hoạch',
-    url: '/schedule/list',
-    icon: 'icon-speedometer'
-  },
+  // {
+  //   name: 'Thông tin quy hoạch',
+  //   url: '/schedule/list',
+  //   icon: 'icon-speedometer'
+  // },
   {
     title: true,
     name: 'Danh mục'

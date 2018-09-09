@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ExceptionObject } from '../../core/exception/exception-object'
 import { EnterprisePromise } from '../../core/async/enterprise-promise'
 import { CommonPaging } from '../../core/http-query/paging/common-paging'
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
@@ -14,13 +13,14 @@ import { AndCondition } from '../../core/http-query/condition/and-condition';
 import { DefaultCondition } from '../../core/http-query/condition/default-condition';
 import { ConditionOperator } from '../../core/http-query/condition/condition-operator';
 import { AppConstants } from '../../variable-defination/app-constanst';
+import { BaseComponent } from '../../core/form/base-component';
 
 @Component({
   selector: 'common-data-table',
   templateUrl: 'common-data-table.component.html',
   styleUrls: ['common-data-table.component.scss']
 })
-export class CommonDataTableComponent implements OnInit {
+export class CommonDataTableComponent extends BaseComponent implements OnInit {
 
   @Input() data: DataTableModel;
   @Input() option: Optional;
@@ -29,8 +29,6 @@ export class CommonDataTableComponent implements OnInit {
   @Output() quickSearch: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
-
-  isLoading: boolean = false;
 
   pagingQuery: CommonPaging = null;
   sortQuery: CommonSort = null;
@@ -53,12 +51,15 @@ export class CommonDataTableComponent implements OnInit {
   @Input() events: Observable<void>;
 
   constructor(public http: HttpService, private router: Router, private activeRoute: ActivatedRoute) {
+    super();
     this.pagingQuery = new CommonPaging(0, AppConstants.QUANTITY_PER_PAGE);
   }
 
   ngOnInit() {
     this.eventsSubscription = this.events.subscribe(async () => {
+      this.isLoading = true;
       this.dataList = await this.getData(this.filterQuery, this.sortQuery, this.pagingQuery, true, true);
+      this.isLoading = false;
     });
   }
 

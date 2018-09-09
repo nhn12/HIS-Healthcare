@@ -17,6 +17,7 @@
   </div>
 </div>
 <ng-container *ngIf="(dataList&&dataList.length>0)||isLoading; else empty">
+  <spinner *ngIf="isLoading"></spinner>
   <table [ngClass]="type=='modal'?'table table-responsive-sm  table-sm':'table table-bordered table-hover'">
     <thead>
       <tr>
@@ -39,6 +40,7 @@
           <span *ngIf="col.type=='date'">{{item[col.col] | date: dateFormat}}</span>
           <span *ngIf="col.type=='time'">{{item[col.col] | date: timeFormat}}</span>
           <span *ngIf="col.type=='icon'" class="col-icon" [innerHTML]="item[col.col + '_custom']"></span>
+          <span *ngIf="col.type=='html'" [innerHTML]="item[col.col + '_custom']"></span>
         </td>
         <td class="table-action-col" *ngIf="!option || option.isEdit == undefined || option.isEdit == null || option.isEdit == true">
           <i class="fa fa-edit" (click)="editItem(item['id'])"></i>

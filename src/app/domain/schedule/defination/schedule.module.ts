@@ -1,3 +1,4 @@
+import { ComponentUtil } from './../../../shared-component/component-util.module';
 import { ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { LaddaModule } from 'angular2-ladda';
 import { BlueprintScheduleListComponent } from './../views/blueprint-schedule-list/blueprint-schedule-list.component';
@@ -10,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TextMaskModule } from 'angular2-text-mask';
+import { FormSchemaModule } from '../../../shared-component/form/form-modules';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { TextMaskModule } from 'angular2-text-mask';
         ReactiveFormsModule,
         ScheduleRoutingModule,
         NgSelectModule,
+        FormSchemaModule,
         CommonDataTableModule,
+        ComponentUtil,
         BsDatepickerModule.forRoot(),
         ModalModule.forRoot(),
         LaddaModule.forRoot({

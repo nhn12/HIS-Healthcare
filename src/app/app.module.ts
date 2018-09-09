@@ -1,7 +1,5 @@
-import { CommonDataTableModule } from './shared-component/common-data-table/common-data-table.module';
+import { SpinnerComponent } from './shared-component/spinner/spinner.component';
 import { CommonMessagePopupCModule } from './containers/common-message/common-message.module';
-import { MessageManagementService } from './containers/common-message/message-management';
-import { MessagePipe } from './containers/common-pipe/message-pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -48,6 +45,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { ImageUploadModule } from "angular2-image-upload";
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgSpinKitModule } from 'ng-spin-kit';
 
 
 
@@ -69,7 +67,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ChartsModule,
     CoreModule,
     NgSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageUploadModule,
+    NgSpinKitModule
   ],
   declarations: [
     AppComponent,
@@ -77,8 +77,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
-  ],
+    RegisterComponent],
   providers: [{
     provide: NG_SELECT_DEFAULT_CONFIG,
     useValue: {

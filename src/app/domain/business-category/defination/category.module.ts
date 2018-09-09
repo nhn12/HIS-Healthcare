@@ -1,3 +1,4 @@
+import { FormSchemaModule } from './../../../shared-component/form/form-modules';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CategoryRoutingModule } from './category.route';
 import { WardCreateComponent } from '../views/ward/ward-create.component'
@@ -22,7 +23,8 @@ import { ApplicationPipesModule } from '../../../containers/common-pipe/applicat
         ReactiveFormsModule,
         CategoryRoutingModule,
         NgSelectModule,
-        CommonDataTableModule
+        CommonDataTableModule,
+        FormSchemaModule
     ],
     declarations: [
         SpecializationCreateComponent,
