@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  serverUrl: "http://45.76.178.109:3006/api/"
+  serverUrl: "http://45.76.178.109:3000/api/"
 };
