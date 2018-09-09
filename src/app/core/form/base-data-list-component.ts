@@ -19,7 +19,7 @@ import { CommonPaging } from '../http-query/paging/common-paging';
 import { BaseComponent } from './base-component';
 
 export abstract class BaseDataListComponent<T>  extends BaseComponent implements IDataListComponent<T> {
-    protected dataList: T[] = [];
+    public dataList: T[] = [];
     protected paging: CommonPaging;
     protected filter: CommonFiler;
     protected sort: CommonSort;
